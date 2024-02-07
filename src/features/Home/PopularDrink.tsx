@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { CocktailType } from "./PopularDrinksList";
 import { useMainContext } from "../../context/main-context";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
+import useLocalStorage from "../../hooks/useLocalStorage";
 
 type PopularDrinkProps = {
   cocktail: CocktailType;
@@ -13,6 +14,19 @@ function PopularDrink({ cocktail }: PopularDrinkProps) {
   const { idDrink, strDrink, strDrinkThumb, strCategory } = cocktail;
 
   const isShow = favorites.some((fav) => fav.idDrink === idDrink);
+
+  function handleAdd() {
+    dispatch({
+      type: "ACTION_ADD_FAVORITE",
+      payload: {
+        idDrink,
+        strCategory,
+        strDrink,
+        strDrinkThumb,
+      },
+    });
+  }
+
   return (
     <div className="border-stone-200 border shadow-lg relative transition-all duration-300 hover:-translate-y-3 active:translate-y-1 hover:scale-[1.01] ">
       <Link to={`/${idDrink}?idDrink=${idDrink}`}>
@@ -31,17 +45,7 @@ function PopularDrink({ cocktail }: PopularDrinkProps) {
         {!isShow ? (
           <BsHeart
             className="text-red-700 hover:-translate-y-2 active:translate-y-1 transition-all duration-300 text-3xl z-50"
-            onClick={() =>
-              dispatch({
-                type: "ACTION_ADD_FAVORITE",
-                payload: {
-                  idDrink,
-                  strCategory,
-                  strDrink,
-                  strDrinkThumb,
-                },
-              })
-            }
+            onClick={handleAdd}
           />
         ) : (
           <BsHeartFill

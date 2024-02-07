@@ -1,5 +1,5 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 import { SkeletonTheme } from "react-loading-skeleton";
 
@@ -8,25 +8,25 @@ import Cart from "./pages/Cart";
 import Cocktails from "./pages/Cocktails";
 import Contact from "./pages/Contact";
 import Details from "./pages/Details";
-import Favorites from "./pages/Favorites";
 import Home from "./pages/Home";
 import Meals from "./pages/Meals";
 
 import Applayout from "./ui/Applayout";
 
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import "react-loading-skeleton/dist/skeleton.css";
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
 import MainContextProvider from "./context/main-context";
-import FilteredMealCategory from "./features/Meals/FilteredMealCategory";
-import FilteredMealIngredient from "./features/Meals/FilteredMealIngredient";
-import FilteredMealArea from "./features/Meals/FilteredMealArea";
-import FilteredMealSearch from "./features/Meals/FilteredMealSearch";
+import FilteredDrinkAlcohol from "./features/Cocktails/FilteredDrinkAlcohol";
 import FilteredDrinkCategory from "./features/Cocktails/FilteredDrinkCategory";
 import FilteredDrinkGlass from "./features/Cocktails/FilteredDrinkGlass";
-import FilteredDrinkAlcohol from "./features/Cocktails/FilteredDrinkAlcohol";
 import FilteredDrinkIngredient from "./features/Cocktails/FilteredDrinkIngredient";
 import FilteredDrinkSearch from "./features/Cocktails/FilteredDrinkSearch";
+import FilteredMealArea from "./features/Meals/FilteredMealArea";
+import FilteredMealCategory from "./features/Meals/FilteredMealCategory";
+import FilteredMealIngredient from "./features/Meals/FilteredMealIngredient";
+import FilteredMealSearch from "./features/Meals/FilteredMealSearch";
+import Favorites from "./pages/Favorites";
 
 const queryClient = new QueryClient();
 

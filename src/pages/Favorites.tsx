@@ -16,7 +16,12 @@ function Favorites() {
       )}
       <div className="flex flex-col">
         {favorites?.map((fav: FavoritesType) => {
-          return <FavoriteItem key={fav.strCategory} item={fav} />;
+          return (
+            <FavoriteItem
+              key={fav.idDrink ? fav.idDrink : fav.idMeal}
+              item={fav}
+            />
+          );
         })}
       </div>
     </div>

@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
-import { MealTypes } from "./List";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
 import { useMainContext } from "../context/main-context";
+import { MealTypes } from "./List";
 
 type ListElementProps = {
   meal: MealTypes;
@@ -14,6 +14,7 @@ function ListElement({ meal, type }: ListElementProps) {
   if (type === "list1") {
     const { strMeal, strMealThumb, idMeal, strCategory } = meal;
     const isShow = favorites.some((fav) => fav.idMeal === idMeal);
+
 
     return (
       <div className="mt-5 mx-2 relative rounded-md hover:scale-[1.01] transition-all duration-300 hover:-translate-y-2 ">

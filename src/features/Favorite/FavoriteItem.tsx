@@ -1,7 +1,9 @@
 import { BsCart2 } from "react-icons/bs";
 import { FavoritesType, useMainContext } from "../../context/main-context";
 
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import useLocalStorage from "../../hooks/useLocalStorage";
 
 type FavoriteItemProps = {
   item: FavoritesType;
@@ -9,15 +11,16 @@ type FavoriteItemProps = {
 
 function FavoriteItem({ item }: FavoriteItemProps) {
   const {
-    strDrinkThumb,
-    strMealThumb,
     idDrink,
     idMeal,
+    strDrinkThumb,
+    strMealThumb,
+    strDrink,
     strMeal,
     strCategory,
-    strDrink,
   } = item;
   const { dispatch } = useMainContext();
+
   return (
     <div className="flex hover:bg-tertiary/10 hover:-skew-x-2 transition-all duration-300 justify-between p-5 gap-5 border-b border-tertiary">
       <div>
@@ -40,7 +43,9 @@ function FavoriteItem({ item }: FavoriteItemProps) {
               <h4 className="md:text-xl w-16 font-medium truncate">
                 {strDrink ? strDrink : strMeal}
               </h4>
-              <p className="text-sm w-16 text-stone-500 truncate">{strCategory}</p>
+              <p className="text-sm w-16 text-stone-500 truncate">
+                {strCategory}
+              </p>
             </div>
           </div>
         </Link>

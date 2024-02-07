@@ -1,4 +1,11 @@
-import { ReactNode, createContext, useContext, useReducer } from "react";
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 
 export type FavoritesType = {
   idMeal?: string;
@@ -398,8 +405,6 @@ export default function MainContextProvider({
     },
     dispatch,
   ] = useReducer(reducer, initialState);
-
-  console.log(favorites);
 
   return (
     <MainContext.Provider
