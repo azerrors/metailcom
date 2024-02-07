@@ -12,9 +12,10 @@ import {
   getCocktailGlassList,
   getCocktailIngredientList,
 } from "../../services/cocktailApi/cocktailOther";
+import CocktailSidebar from "./CocktailSidebar";
 
 function DropdownMenu() {
-  const { dispatch } = useMainContext();
+  const { dispatch, showCocktailSidebar } = useMainContext();
 
   const { data: cocktailCategoryList } = useQuery({
     queryKey: ["cocktailCategoryList"],
@@ -34,9 +35,20 @@ function DropdownMenu() {
     queryKey: ["cocktailGlassList"],
     queryFn: () => getCocktailGlassList(),
   });
-console.log(cocktailIngredientList)
+
+  if (showCocktailSidebar) {
+    return (
+      <CocktailSidebar
+        glass={cocktailGlassList}
+        ingredient={cocktailIngredientList}
+        category={cocktailCategoryList}
+        alcoholic={cocktailAlcoholList}
+      />
+    );
+  }
+
   return (
-    <div className="flex gap-5 transition-all duration-300">
+    <div className="md:flex hidden gap-5 transition-all duration-300">
       <div className="group">
         <p className="flex items-center gap-1 text-lg font-medium group-hover:border-b-2 border-tertiary p-1">
           Category

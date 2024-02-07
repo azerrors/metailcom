@@ -3,8 +3,8 @@ import DropdownMenu from "../features/Cocktails/DropdownMenu";
 
 function Cocktails() {
   return (
-    <div className="mx-72 mt-10">
-      <section className="ml-24 mb-2">
+    <div className="md:mx-72 mt-10">
+      <section className="md:ml-24 md:mb-2">
         <DropdownMenu />
       </section>
       <Outlet />

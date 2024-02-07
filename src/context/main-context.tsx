@@ -5,6 +5,7 @@ type MainContextProps = {
   showSearchBar: boolean;
   showResponsiveNav: boolean;
   showMealSidebar: boolean;
+  showCocktailSidebar: boolean;
 
   mealInput: string;
   mealCategory: string;
@@ -29,6 +30,7 @@ const initialState: MainContextProps = {
   showSearchBar: false,
   showResponsiveNav: false,
   showMealSidebar: false,
+  showCocktailSidebar: false,
 
   mealInput: "",
   mealCategory: "",
@@ -118,6 +120,13 @@ type ACTION_CLOSE_MEAL_SIDEBAR = {
   type: "ACTION_CLOSE_MEAL_SIDEBAR";
 };
 
+type ACTION_OPEN_COCKTAIL_SIDEBAR = {
+  type: "ACTION_OPEN_COCKTAIL_SIDEBAR";
+};
+type ACTION_CLOSE_COCKTAIL_SIDEBAR = {
+  type: "ACTION_CLOSE_COCKTAIL_SIDEBAR";
+};
+
 type Action =
   | ACTION_GET_MEAL_AREA
   | ACTION_GET_MEAL_CATEGORY
@@ -134,7 +143,9 @@ type Action =
   | ACTION_OPEN_RESPONSIVE_NAV
   | ACTION_CLOSE_RESPONSIVE_NAV
   | ACTION_OPEN_MEAL_SIDEBAR
-  | ACTION_CLOSE_MEAL_SIDEBAR;
+  | ACTION_CLOSE_MEAL_SIDEBAR
+  | ACTION_OPEN_COCKTAIL_SIDEBAR
+  | ACTION_CLOSE_COCKTAIL_SIDEBAR;
 
 function reducer(state: MainContextProps, action: Action) {
   if (action.type === "ACTION_GET_MAIN_INPUT") {
@@ -185,6 +196,22 @@ function reducer(state: MainContextProps, action: Action) {
     };
   }
 
+  if (action.type === "ACTION_OPEN_COCKTAIL_SIDEBAR") {
+    return {
+      ...state,
+      showCocktailSidebar: true,
+    };
+  }
+
+  if (action.type === "ACTION_CLOSE_COCKTAIL_SIDEBAR") {
+    return {
+      ...state,
+      showCocktailSidebar: false,
+    };
+  }
+
+  //================================================================================================
+
   if (action.type === "ACTION_GET_MEAL_INPUT") {
     return {
       ...state,
@@ -206,7 +233,6 @@ function reducer(state: MainContextProps, action: Action) {
       mealArea: "",
 
       showMealSidebar: false,
-
     };
   }
 
@@ -219,7 +245,6 @@ function reducer(state: MainContextProps, action: Action) {
       mealCategory: "",
 
       showMealSidebar: false,
-
     };
   }
 
@@ -232,10 +257,10 @@ function reducer(state: MainContextProps, action: Action) {
       mealCategory: "",
 
       showMealSidebar: false,
-
     };
   }
 
+  //================================================================
   if (action.type === "ACTION_GET_COCKTAIL_INPUT") {
     return {
       ...state,
@@ -245,6 +270,8 @@ function reducer(state: MainContextProps, action: Action) {
       drinkIngredient: "",
       drinkGlass: "",
       drinkAlcohol: "",
+
+      showCocktailSidebar: false,
     };
   }
 
@@ -256,6 +283,9 @@ function reducer(state: MainContextProps, action: Action) {
       drinkIngredient: "",
       drinkGlass: "",
       drinkAlcohol: "",
+
+      showCocktailSidebar: false,
+
     };
   }
 
@@ -267,6 +297,9 @@ function reducer(state: MainContextProps, action: Action) {
       drinkIngredient: "",
       drinkCategory: "",
       drinkAlcohol: "",
+
+      showCocktailSidebar: false,
+
     };
   }
 
@@ -279,6 +312,9 @@ function reducer(state: MainContextProps, action: Action) {
       drinkGlass: "",
       drinkCategory: "",
       drinkAlcohol: "",
+
+      showCocktailSidebar: false,
+
     };
   }
 
@@ -291,6 +327,8 @@ function reducer(state: MainContextProps, action: Action) {
       drinkInput: "",
       drinkGlass: "",
       drinkCategory: "",
+      
+      showCocktailSidebar: false,
     };
   }
 
@@ -306,6 +344,7 @@ export default function MainContextProvider({
       showSearchBar,
       showResponsiveNav,
       showMealSidebar,
+      showCocktailSidebar,
       mealInput,
       mealCategory,
       mealArea,
@@ -326,6 +365,8 @@ export default function MainContextProvider({
         showSearchBar,
         showResponsiveNav,
         showMealSidebar,
+        showCocktailSidebar,
+
         mealInput,
         mealCategory,
         mealArea,
