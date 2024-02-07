@@ -8,8 +8,6 @@ import AllCategoryList from "../features/Home/AllCategoryList";
 import PopularDrinksList from "../features/Home/PopularDrinksList";
 import List from "../ui/List";
 import Button from "../ui/reusable/Button";
-import Skeleton from "react-loading-skeleton";
-import SkeletonUi from "../ui/SkeletonUi";
 
 function Home() {
   const { data: trending, isLoading: trendLoading } = useQuery({

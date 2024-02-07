@@ -1,10 +1,9 @@
 import { BsHeart } from "react-icons/bs";
 import { FaDownLeftAndUpRightToCenter } from "react-icons/fa6";
 
+import { useEffect } from "react";
 import { useMainContext } from "../context/main-context";
 import Button from "./reusable/Button";
-import useBodyScrollLock from "../hooks/useBodyScrollLock";
-import { useEffect, useRef } from "react";
 
 function ResponsiveNav() {
   const { dispatch, showResponsiveNav } = useMainContext();

@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
 
 import {
   getMealByArea,
@@ -14,11 +13,10 @@ import {
 import { MealTypes } from "../../ui/List";
 import SliderV from "../../ui/SliderV";
 import { CocktailType } from "../Home/PopularDrinksList";
-import SimilarCocktailCategoryItem from "./drink/SimilarCocktailCategoryItem";
-import MealIngredient from "./meal/MealIngredient";
-import SimilarMealItem from "./meal/SimilarMealItem";
-import SimilarCocktailGlassItem from "./drink/SimilarCocktailGlassItem";
 import SimilarCocktailAlcoholicItem from "./drink/SimilarCocktailAlcoholicItem";
+import SimilarCocktailCategoryItem from "./drink/SimilarCocktailCategoryItem";
+import SimilarCocktailGlassItem from "./drink/SimilarCocktailGlassItem";
+import SimilarMealItem from "./meal/SimilarMealItem";
 
 type Props = {
   meal?: MealTypes;
@@ -26,7 +24,7 @@ type Props = {
 };
 
 function DetailItem({ meal, cocktail }: Props) {
-  const [ingredient, setIngredient] = useState<string[]>([]);
+  // const [ingredient, setIngredient] = useState<string[]>([]);
 
   const {
     strArea,
@@ -42,7 +40,6 @@ function DetailItem({ meal, cocktail }: Props) {
     strIngredient6,
     strIngredient7,
     strIngredient8,
-    strIngredient9,
     strMeasure1,
     strMeasure2,
     strMeasure4,
@@ -51,11 +48,9 @@ function DetailItem({ meal, cocktail }: Props) {
     strMeasure6,
     strMeasure7,
     strMeasure8,
-    strMeasure9,
   } = meal || {};
 
   const {
-    idDrink,
     strAlcoholic,
     strCategory: strDrinkCategory,
     strDrinkThumb,
@@ -70,7 +65,6 @@ function DetailItem({ meal, cocktail }: Props) {
     strIngredient6: strDrinkIngredient6,
     strIngredient7: strDrinkIngredient7,
     strIngredient8: strDrinkIngredient8,
-    strIngredient9: strDrinkIngredient9,
     strMeasure1: strDrinkMeasure1,
     strMeasure2: strDrinkMeasure2,
     strMeasure4: strDrinkMeasure3,
@@ -79,34 +73,33 @@ function DetailItem({ meal, cocktail }: Props) {
     strMeasure6: strDrinkMeasure6,
     strMeasure7: strDrinkMeasure7,
     strMeasure8: strDrinkMeasure8,
-    strMeasure9: strDrinkMeasure9,
   } = cocktail || {};
 
   const imageStyle = "mb-4 md:mx-2 md:max-w-32 ";
   const h3Style = "text-center font-semibold text-sm";
 
-  useEffect(() => {
-    setIngredient([
-      strIngredient1 ? strIngredient1 : "",
-      strIngredient2 ? strIngredient2 : "",
-      strIngredient3 ? strIngredient3 : "",
-      strIngredient4 ? strIngredient4 : "",
-      strIngredient5 ? strIngredient5 : "",
-      strIngredient6 ? strIngredient6 : "",
-      strIngredient7 ? strIngredient7 : "",
-      strIngredient8 ? strIngredient8 : "",
-    ]);
-    // No need for a cleanup function in this case
-  }, [
-    strIngredient1,
-    strIngredient2,
-    strIngredient3,
-    strIngredient4,
-    strIngredient5,
-    strIngredient6,
-    strIngredient7,
-    strIngredient8,
-  ]);
+  // useEffect(() => {
+  //   setIngredient([
+  //     strIngredient1 ? strIngredient1 : "",
+  //     strIngredient2 ? strIngredient2 : "",
+  //     strIngredient3 ? strIngredient3 : "",
+  //     strIngredient4 ? strIngredient4 : "",
+  //     strIngredient5 ? strIngredient5 : "",
+  //     strIngredient6 ? strIngredient6 : "",
+  //     strIngredient7 ? strIngredient7 : "",
+  //     strIngredient8 ? strIngredient8 : "",
+  //   ]);
+  //   // No need for a cleanup function in this case
+  // }, [
+  //   strIngredient1,
+  //   strIngredient2,
+  //   strIngredient3,
+  //   strIngredient4,
+  //   strIngredient5,
+  //   strIngredient6,
+  //   strIngredient7,
+  //   strIngredient8,
+  // ]);
 
   const { data: similarCategories } = useQuery({
     queryKey: ["categoryMeal", strCategory],

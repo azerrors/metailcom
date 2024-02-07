@@ -1,5 +1,4 @@
 import ListElement from "./ListElement";
-import SkeletonUi from "./SkeletonUi";
 import SliderV from "./SliderV";
 export type MealTypes = {
   dateModified: string;
@@ -69,7 +68,7 @@ type ListProps = {
   // mealAllCategory: AllMealCategoryType[];
 };
 
-function List({ meal, loading, type }: ListProps) {
+function List({ meal, type }: ListProps) {
   if (type === "list1") {
     return (
       <ul>

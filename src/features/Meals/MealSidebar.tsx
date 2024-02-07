@@ -1,11 +1,9 @@
-import { MdOutlineCloseFullscreen } from "react-icons/md";
-import { useMainContext } from "../../context/main-context";
 import {
-  BsArrowDownShort,
-  BsArrowRightShort,
-  BsArrowUpShort,
+  BsArrowRightShort
 } from "react-icons/bs";
+import { MdOutlineCloseFullscreen } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { useMainContext } from "../../context/main-context";
 
 type MealSidebarProps = {
   area: { strArea: string }[];

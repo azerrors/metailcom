@@ -1,8 +1,7 @@
-import React from "react";
-import { useMainContext } from "../../context/main-context";
 import { useQuery } from "@tanstack/react-query";
-import { getCocktailsByAlcohol } from "../../services/cocktailApi/cocktailMain";
 import { Link } from "react-router-dom";
+import { useMainContext } from "../../context/main-context";
+import { getCocktailsByAlcohol } from "../../services/cocktailApi/cocktailMain";
 import Spinner from "../../ui/Spinner";
 import { CocktailType } from "../Home/PopularDrinksList";
 import CocktailItem from "./CocktailItem";

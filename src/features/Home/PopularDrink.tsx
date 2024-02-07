@@ -6,7 +6,7 @@ type PopularDrinkProps = {
 };
 
 function PopularDrink({ cocktail }: PopularDrinkProps) {
-  const { idDrink, strCategory, strDrink, strDrinkThumb } = cocktail;
+  const { idDrink, strDrink, strDrinkThumb } = cocktail;
   return (
     <Link
       to={`/${idDrink}?idDrink=${idDrink}`}
