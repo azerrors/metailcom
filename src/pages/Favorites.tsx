@@ -1,7 +1,4 @@
-
-type Props = {};
-
-function Favorites({}: Props) {
+function Favorites() {
   return <div>Favorites</div>;
 }
 

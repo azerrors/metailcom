@@ -1,7 +1,4 @@
-
-type Props = {};
-
-function Cart({}: Props) {
+function Cart() {
   return <div>Cart</div>;
 }
 

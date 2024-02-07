@@ -1,7 +1,4 @@
-
-type Props = {};
-
-function About(props: Props) {
+function About() {
   return <div>About</div>;
 }
 
