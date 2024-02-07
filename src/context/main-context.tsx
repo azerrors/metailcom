@@ -2,9 +2,7 @@ import {
   ReactNode,
   createContext,
   useContext,
-  useEffect,
-  useReducer,
-  useState,
+  useReducer
 } from "react";
 
 export type FavoritesType = {

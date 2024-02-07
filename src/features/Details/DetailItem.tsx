@@ -129,7 +129,7 @@ function DetailItem({ meal, cocktail }: Props) {
 
   if (meal) {
     return (
-      <div className="mt-16">
+      <div className="mt-16 overflow-x-hidden ">
         <section className="flex flex-col md:flex-row border border-stone-300">
           <div className="md:w-[60%]">
             <img
@@ -247,7 +247,7 @@ function DetailItem({ meal, cocktail }: Props) {
             )}
           </div>
 
-          <div className=" md:hidden p-3">
+          <div className="  md:hidden p-3">
             <SliderV
               slidesToShow400={2}
               slidesToScroll400={2}
@@ -408,7 +408,7 @@ function DetailItem({ meal, cocktail }: Props) {
 
   if (cocktail) {
     return (
-      <div className="mt-16 ">
+      <div className="mt-16 overflow-x-hidden ">
         <section className="flex flex-col md:flex-row border border-stone-300">
           <div className="md:w-[60%]">
             <img
