@@ -4,6 +4,7 @@ import { FaDownLeftAndUpRightToCenter } from "react-icons/fa6";
 import { useEffect } from "react";
 import { useMainContext } from "../context/main-context";
 import Button from "./reusable/Button";
+import { Link } from "react-router-dom";
 
 function ResponsiveNav() {
   const { dispatch, showResponsiveNav } = useMainContext();
@@ -62,11 +63,13 @@ function ResponsiveNav() {
         <Button btn="secondary">Register</Button>
       </section>
 
-      <section className="flex justify-center mt-10 relative">
-        <BsHeart className="text-secondary text-4xl " />
-        <span className="text-stone-900 absolute right-40 top-4 z-50 text-lg">
-          0
-        </span>
+      <section
+        className="flex justify-center mt-10 relative"
+        onClick={closeNavbar}
+      >
+        <Link to="favorites">
+          <BsHeart className="text-secondary text-4xl " />
+        </Link>
       </section>
     </div>
   );

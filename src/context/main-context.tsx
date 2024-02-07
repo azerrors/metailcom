@@ -1,6 +1,21 @@
 import { ReactNode, createContext, useContext, useReducer } from "react";
 
+export type FavoritesType = {
+  idMeal?: string;
+  idDrink?: string;
+  strCategory?: string;
+  strDrink?: string;
+  strMeal?: string;
+  strGlass?: string;
+  strAlcoholic?: string;
+
+  strMealThumb?: string;
+  strDrinkThumb?: string;
+};
+
 type MainContextProps = {
+  favorites: FavoritesType[];
+
   mainInput: string;
   showSearchBar: boolean;
   showResponsiveNav: boolean;
@@ -26,6 +41,7 @@ type MainContextProviderProps = {
 
 const MainContext = createContext<MainContextProps | null>(null);
 const initialState: MainContextProps = {
+  favorites: [],
   mainInput: "",
   showSearchBar: false,
   showResponsiveNav: false,
@@ -120,6 +136,16 @@ type ACTION_CLOSE_MEAL_SIDEBAR = {
   type: "ACTION_CLOSE_MEAL_SIDEBAR";
 };
 
+//================================================================
+type ACTION_ADD_FAVORITE = {
+  type: "ACTION_ADD_FAVORITE";
+  payload: FavoritesType;
+};
+type ACTION_DELETE_FAVORITE = {
+  type: "ACTION_DELETE_FAVORITE";
+  payload: string;
+};
+
 type ACTION_OPEN_COCKTAIL_SIDEBAR = {
   type: "ACTION_OPEN_COCKTAIL_SIDEBAR";
 };
@@ -145,7 +171,9 @@ type Action =
   | ACTION_OPEN_MEAL_SIDEBAR
   | ACTION_CLOSE_MEAL_SIDEBAR
   | ACTION_OPEN_COCKTAIL_SIDEBAR
-  | ACTION_CLOSE_COCKTAIL_SIDEBAR;
+  | ACTION_CLOSE_COCKTAIL_SIDEBAR
+  | ACTION_ADD_FAVORITE
+  | ACTION_DELETE_FAVORITE;
 
 function reducer(state: MainContextProps, action: Action) {
   if (action.type === "ACTION_GET_MAIN_INPUT") {
@@ -210,6 +238,21 @@ function reducer(state: MainContextProps, action: Action) {
     };
   }
 
+  //================================================================================================
+  if (action.type === "ACTION_DELETE_FAVORITE") {
+    return {
+      ...state,
+      favorites: state.favorites.filter(
+        (fav) => fav.idDrink !== action.payload && fav.idMeal !== action.payload
+      ),
+    };
+  }
+  if (action.type === "ACTION_ADD_FAVORITE") {
+    return {
+      ...state,
+      favorites: [...state.favorites, action.payload],
+    };
+  }
   //================================================================================================
 
   if (action.type === "ACTION_GET_MEAL_INPUT") {
@@ -285,7 +328,6 @@ function reducer(state: MainContextProps, action: Action) {
       drinkAlcohol: "",
 
       showCocktailSidebar: false,
-
     };
   }
 
@@ -299,7 +341,6 @@ function reducer(state: MainContextProps, action: Action) {
       drinkAlcohol: "",
 
       showCocktailSidebar: false,
-
     };
   }
 
@@ -314,7 +355,6 @@ function reducer(state: MainContextProps, action: Action) {
       drinkAlcohol: "",
 
       showCocktailSidebar: false,
-
     };
   }
 
@@ -327,7 +367,7 @@ function reducer(state: MainContextProps, action: Action) {
       drinkInput: "",
       drinkGlass: "",
       drinkCategory: "",
-      
+
       showCocktailSidebar: false,
     };
   }
@@ -340,6 +380,7 @@ export default function MainContextProvider({
 }: MainContextProviderProps) {
   const [
     {
+      favorites,
       mainInput,
       showSearchBar,
       showResponsiveNav,
@@ -358,9 +399,12 @@ export default function MainContextProvider({
     dispatch,
   ] = useReducer(reducer, initialState);
 
+  console.log(favorites);
+
   return (
     <MainContext.Provider
       value={{
+        favorites,
         mainInput,
         showSearchBar,
         showResponsiveNav,

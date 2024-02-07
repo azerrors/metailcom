@@ -123,7 +123,7 @@ function Applayout() {
         )}
       </div>
       {showResponsiveNav && <ResponsiveNav />}
-      <main className="md:min-h-[42rem] ">
+      <main className="md:min-h-[45rem] ">
         <Outlet />
       </main>
     </div>
