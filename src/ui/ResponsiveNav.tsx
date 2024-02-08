@@ -62,6 +62,7 @@ function ResponsiveNav() {
         <Button btn="primary">Login</Button>
         <Button btn="secondary">Register</Button>
       </section>
+
     </div>
   );
 }
