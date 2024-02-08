@@ -17,6 +17,9 @@ import SimilarCocktailAlcoholicItem from "./drink/SimilarCocktailAlcoholicItem";
 import SimilarCocktailCategoryItem from "./drink/SimilarCocktailCategoryItem";
 import SimilarCocktailGlassItem from "./drink/SimilarCocktailGlassItem";
 import SimilarMealItem from "./meal/SimilarMealItem";
+import { useMainContext } from "../../context/main-context";
+import { BsCart2,BsHeart } from "react-icons/bs";
+import { toast } from "react-toastify";
 
 type Props = {
   meal?: MealTypes;
@@ -27,6 +30,7 @@ function DetailItem({ meal, cocktail }: Props) {
   // const [ingredient, setIngredient] = useState<string[]>([]);
 
   const {
+    idMeal,
     strArea,
     strCategory,
     strMeal,
@@ -51,6 +55,7 @@ function DetailItem({ meal, cocktail }: Props) {
   } = meal || {};
 
   const {
+    idDrink,
     strAlcoholic,
     strCategory: strDrinkCategory,
     strDrinkThumb,
@@ -123,9 +128,104 @@ function DetailItem({ meal, cocktail }: Props) {
   });
 
   const { data: similarDrinkAlcoholic } = useQuery({
-    queryKey: ["drinkAlcholic", strAlcoholic],
+    queryKey: ["drinkAlcohol", strAlcoholic],
     queryFn: () => getCocktailsByAlcohol(strAlcoholic ? strAlcoholic : ""),
   });
+
+  const { cart, dispatch, favorites } = useMainContext();
+
+  const isCart = cart.some(
+    (fav) => fav.idDrink === idDrink && fav.idMeal === idMeal
+  );
+
+  const isFav = favorites.some(
+    (fav) => fav.idDrink === idDrink && fav.idMeal === idMeal
+  );
+  const addToCart = () => {
+    dispatch({
+      type: "ACTION_ADD_CART",
+      payload: {
+        idDrink,
+        number: 1,
+        idMeal,
+        strDrinkThumb,
+        strMealThumb,
+        strDrink,
+        strMeal,
+        strCategory,
+      },
+    });
+
+    toast.success(`|${strDrink ? strDrink : strMeal}| Added To Cart Basket`, {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  };
+
+  const deleteFromCart = () => {
+    dispatch({
+      type: "ACTION_DELETE_CART",
+      payload: idDrink ? idDrink : idMeal ? idMeal : "",
+    });
+
+    toast.error(`|${strDrink ? strDrink : strMeal}| Deleted from Cart Basket`, {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  };
+
+  const addToFavorite = () => {
+    dispatch({
+      type: "ACTION_ADD_FAVORITE",
+      payload: {
+        number: 1,
+        idMeal,
+        strCategory,
+        strMeal,
+        strMealThumb,
+      },
+    });
+    toast.success(`|${strMeal}| Added To Favorite List`, {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  };
+
+  const deleteFromFavorite = () => {
+    dispatch({
+      type: "ACTION_DELETE_FAVORITE",
+      payload: idDrink ? idDrink : idMeal ? idMeal : "",
+
+    });
+    toast.error(`|${strMeal}| Deleted To Favorite List`, {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  };
 
   if (meal) {
     return (
@@ -149,6 +249,47 @@ function DetailItem({ meal, cocktail }: Props) {
               <p className="md:text-sm text-xs ">{strInstructions}</p>
             </div>
           </div>
+        </section>
+
+        <section className = "flex justify-end mt-5 gap-5 ">
+          <div>
+            {!isCart ? (
+              <button
+                onClick={addToCart}
+                className="flex items-center gap-2 bg-tertiary hover:skew-x-2 text-xs hover:skew-y-1 transition-all duration-300 uppercase md:text-xl font-medium md:p-2 p-1 text-secondary rounded-md"
+              >
+                add to basket
+                <BsCart2 />
+              </button>
+            ) : (
+              <>
+                <button
+                  onClick={deleteFromCart}
+                  className="flex items-center gap-2 bg-tertiary hover:skew-x-2 text-xs hover:skew-y-1 transition-all duration-300 uppercase md:text-xl font-medium md:p-2 p-1 text-secondary rounded-md"
+                >
+                  Delete from basket
+                  <BsCart2 />
+                </button>
+              </>
+            )}
+          </div>
+          {!isFav ? (
+            <button
+              onClick={addToFavorite}
+              className="flex items-center gap-2 bg-tertiary hover:skew-x-2 text-xs hover:skew-y-1 transition-all duration-300 uppercase md:text-xl font-medium md:p-2 p-1 text-secondary rounded-md"
+            >
+              add to favorite
+              <BsHeart />
+            </button>
+          ) : (
+            <button
+              onClick={deleteFromFavorite}
+              className="flex items-center gap-2 bg-tertiary hover:skew-x-2 text-xs hover:skew-y-1 transition-all duration-300 uppercase md:text-xl font-medium md:p-2 p-1 text-secondary rounded-md"
+            >
+              delete from favorite
+              <BsHeart />
+            </button>
+          )}
         </section>
 
         <section>
@@ -432,98 +573,110 @@ function DetailItem({ meal, cocktail }: Props) {
         </section>
 
         <section>
+          <div></div>
+        </section>
+
+        <section>
           <h2 className="md:text-3xl uppercase tracking-wider mt-20 bg-tertiary/70 p-3 text-secondary">
             Ingredients
           </h2>
-          <div className="flex mt-4 gap-2 justify-center bg-tertiary/10 p-2">
-            {strDrinkIngredient1 && (
-              <div>
-                <img
-                  src={`https://www.themealdb.com/images/ingredients/${strDrinkIngredient1}.png`}
-                  alt=""
-                  className={imageStyle}
-                />
-                <h3 className={h3Style}>{strDrinkIngredient1}</h3>
-                <h3 className={h3Style}>{strDrinkMeasure1}</h3>
-              </div>
-            )}
-            {strDrinkIngredient2 && (
-              <div>
-                <img
-                  src={`https://www.themealdb.com/images/ingredients/${strDrinkIngredient2}.png`}
-                  alt=""
-                  className={imageStyle}
-                />
-                <h3 className={h3Style}>{strDrinkIngredient2}</h3>
-                <h3 className={h3Style}>{strDrinkMeasure2}</h3>
-              </div>
-            )}
-            {strDrinkIngredient3 && (
-              <div>
-                <img
-                  src={`https://www.themealdb.com/images/ingredients/${strDrinkIngredient3}.png`}
-                  alt=""
-                  className={imageStyle}
-                />
-                <h3 className={h3Style}>{strDrinkIngredient3}</h3>
-                <h3 className={h3Style}>{strDrinkMeasure3}</h3>
-              </div>
-            )}
-            {strDrinkIngredient4 && (
-              <div>
-                <img
-                  src={`https://www.themealdb.com/images/ingredients/${strDrinkIngredient4}.png`}
-                  alt=""
-                  className={imageStyle}
-                />
-                <h3 className={h3Style}>{strDrinkIngredient4}</h3>
-                <h3 className={h3Style}>{strDrinkMeasure4}</h3>
-              </div>
-            )}
-            {strDrinkIngredient5 && (
-              <div>
-                <img
-                  src={`https://www.themealdb.com/images/ingredients/${strDrinkIngredient5}.png`}
-                  alt=""
-                  className={imageStyle}
-                />
-                <h3 className={h3Style}>{strDrinkIngredient5}</h3>
-                <h3 className={h3Style}>{strDrinkMeasure5}</h3>
-              </div>
-            )}
-            {strDrinkIngredient6 && (
-              <div>
-                <img
-                  src={`https://www.themealdb.com/images/ingredients/${strDrinkIngredient6}.png`}
-                  alt=""
-                  className={imageStyle}
-                />
-                <h3 className={h3Style}>{strDrinkIngredient6}</h3>
-                <h3 className={h3Style}>{strDrinkMeasure6}</h3>
-              </div>
-            )}
-            {strDrinkIngredient7 && (
-              <div>
-                <img
-                  src={`https://www.themealdb.com/images/ingredients/${strDrinkIngredient7}.png`}
-                  alt=""
-                  className={imageStyle}
-                />
-                <h3 className={h3Style}>{strDrinkIngredient7}</h3>
-                <h3 className={h3Style}>{strDrinkMeasure7}</h3>
-              </div>
-            )}
-            {strDrinkIngredient8 && (
-              <div>
-                <img
-                  src={`https://www.themealdb.com/images/ingredients/${strDrinkIngredient8}.png`}
-                  alt=""
-                  className={imageStyle}
-                />
-                <h3 className={h3Style}>{strDrinkIngredient8}</h3>
-                <h3 className={h3Style}>{strDrinkMeasure8}</h3>
-              </div>
-            )}
+          <div className=" mt-4  bg-tertiary/10 p-2">
+            <SliderV
+              slidesToShow400={2}
+              slidesToScroll400={2}
+              autoplay={true}
+              autoplaySpeed={3000}
+              pauseOnHover={true}
+            >
+              {strDrinkIngredient1 && (
+                <div>
+                  <img
+                    src={`https://www.themealdb.com/images/ingredients/${strDrinkIngredient1}.png`}
+                    alt=""
+                    className={imageStyle}
+                  />
+                  <h3 className={h3Style}>{strDrinkIngredient1}</h3>
+                  <h3 className={h3Style}>{strDrinkMeasure1}</h3>
+                </div>
+              )}
+              {strDrinkIngredient2 && (
+                <div>
+                  <img
+                    src={`https://www.themealdb.com/images/ingredients/${strDrinkIngredient2}.png`}
+                    alt=""
+                    className={imageStyle}
+                  />
+                  <h3 className={h3Style}>{strDrinkIngredient2}</h3>
+                  <h3 className={h3Style}>{strDrinkMeasure2}</h3>
+                </div>
+              )}
+              {strDrinkIngredient3 && (
+                <div>
+                  <img
+                    src={`https://www.themealdb.com/images/ingredients/${strDrinkIngredient3}.png`}
+                    alt=""
+                    className={imageStyle}
+                  />
+                  <h3 className={h3Style}>{strDrinkIngredient3}</h3>
+                  <h3 className={h3Style}>{strDrinkMeasure3}</h3>
+                </div>
+              )}
+              {strDrinkIngredient4 && (
+                <div>
+                  <img
+                    src={`https://www.themealdb.com/images/ingredients/${strDrinkIngredient4}.png`}
+                    alt=""
+                    className={imageStyle}
+                  />
+                  <h3 className={h3Style}>{strDrinkIngredient4}</h3>
+                  <h3 className={h3Style}>{strDrinkMeasure4}</h3>
+                </div>
+              )}
+              {strDrinkIngredient5 && (
+                <div>
+                  <img
+                    src={`https://www.themealdb.com/images/ingredients/${strDrinkIngredient5}.png`}
+                    alt=""
+                    className={imageStyle}
+                  />
+                  <h3 className={h3Style}>{strDrinkIngredient5}</h3>
+                  <h3 className={h3Style}>{strDrinkMeasure5}</h3>
+                </div>
+              )}
+              {strDrinkIngredient6 && (
+                <div>
+                  <img
+                    src={`https://www.themealdb.com/images/ingredients/${strDrinkIngredient6}.png`}
+                    alt=""
+                    className={imageStyle}
+                  />
+                  <h3 className={h3Style}>{strDrinkIngredient6}</h3>
+                  <h3 className={h3Style}>{strDrinkMeasure6}</h3>
+                </div>
+              )}
+              {strDrinkIngredient7 && (
+                <div>
+                  <img
+                    src={`https://www.themealdb.com/images/ingredients/${strDrinkIngredient7}.png`}
+                    alt=""
+                    className={imageStyle}
+                  />
+                  <h3 className={h3Style}>{strDrinkIngredient7}</h3>
+                  <h3 className={h3Style}>{strDrinkMeasure7}</h3>
+                </div>
+              )}
+              {strDrinkIngredient8 && (
+                <div>
+                  <img
+                    src={`https://www.themealdb.com/images/ingredients/${strDrinkIngredient8}.png`}
+                    alt=""
+                    className={imageStyle}
+                  />
+                  <h3 className={h3Style}>{strDrinkIngredient8}</h3>
+                  <h3 className={h3Style}>{strDrinkMeasure8}</h3>
+                </div>
+              )}
+            </SliderV>
           </div>
         </section>
 

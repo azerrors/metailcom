@@ -2,6 +2,7 @@ import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { useMainContext } from "../../context/main-context";
 import { CocktailType } from "./PopularDrinksList";
+import { toast } from "react-toastify";
 
 type PopularDrinkProps = {
   cocktail: CocktailType;
@@ -14,7 +15,7 @@ function PopularDrink({ cocktail }: PopularDrinkProps) {
 
   const isShow = favorites.some((fav) => fav.idDrink === idDrink);
 
-  function handleAdd() {
+  function addToFavorite() {
     dispatch({
       type: "ACTION_ADD_FAVORITE",
       payload: {
@@ -25,7 +26,35 @@ function PopularDrink({ cocktail }: PopularDrinkProps) {
         strDrinkThumb,
       },
     });
+
+    toast.success(`|${strDrink}| Added To Favorite List`, {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
   }
+  const deleteFromFavorite = () => {
+    dispatch({
+      type: "ACTION_DELETE_FAVORITE",
+      payload: idDrink,
+    });
+
+    toast.error(`|${strDrink}| Deleted from Favorite List`, {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  };
 
   return (
     <div className="border-stone-200 border shadow-lg relative transition-all duration-300 hover:-translate-y-3 active:translate-y-1 hover:scale-[1.01] ">
@@ -45,17 +74,12 @@ function PopularDrink({ cocktail }: PopularDrinkProps) {
         {!isShow ? (
           <BsHeart
             className="text-red-700 hover:-translate-y-2 active:translate-y-1 transition-all duration-300 text-3xl z-50"
-            onClick={handleAdd}
+            onClick={addToFavorite}
           />
         ) : (
           <BsHeartFill
             className="text-red-700  hover:-translate-y-2 active:translate-y-1  transition-all duration-300 text-3xl z-50"
-            onClick={() =>
-              dispatch({
-                type: "ACTION_DELETE_FAVORITE",
-                payload: idDrink,
-              })
-            }
+            onClick={deleteFromFavorite}
           />
         )}
       </div>

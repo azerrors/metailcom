@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { FavoritesType, useMainContext } from "../../context/main-context";
 import { FaTrashAlt } from "react-icons/fa";
+import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 type CartItemProps = {
   item: FavoritesType;
@@ -39,25 +41,44 @@ function CartItem({ item }: CartItemProps) {
     }
   }
 
+  const deleteFromCart = () => {
+    dispatch({
+      type: "ACTION_DELETE_CART",
+      payload: idDrink ? idDrink : idMeal ? idMeal : "",
+    });
+
+    toast.error(`|${strDrink ? strDrink : strMeal}| Deleted from Cart Basket`, {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  };
   return (
     <div className=" border-4 flex items-center justify-between gap-7  hover:bg-tertiary/10 hover:-skew-x-2 transition-all duration-300 ">
       <div className="flex gap-6 p-2">
-        <img
-          src={strDrinkThumb ? strDrinkThumb : strMealThumb}
-          alt=""
-          className="md:w-28 w-16  rounded-lg"
-        />
+        <Link
+          to={`/${idMeal ? idMeal : idDrink}?${idMeal ? "idMeal" : "idDrink"}=${
+            idMeal ? idMeal : idDrink
+          }`}
+          className="flex justify-between md:gap-80 gap-5"
+        >
+          <img
+            src={strDrinkThumb ? strDrinkThumb : strMealThumb}
+            alt=""
+            className="md:w-28 w-16  rounded-lg"
+          />
+        </Link>
         <div className="p-2 flex flex-col justify-between">
           <h4 className="md:text-xl font-medium tracking-wider ">
             {strDrink ? strDrink : strMeal}
           </h4>
           <FaTrashAlt
-            onClick={() =>
-              dispatch({
-                type: "ACTION_DELETE_CART",
-                payload: idDrink ? idDrink : idMeal ? idMeal : "",
-              })
-            }
+            onClick={deleteFromCart}
             className="md:text-2xl text-tertiary cursor-pointer hover:text-red-800 transition-all duration-200"
           />
         </div>

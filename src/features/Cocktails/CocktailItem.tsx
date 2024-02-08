@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { CocktailType } from "../Home/PopularDrinksList";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { useMainContext } from "../../context/main-context";
+import { toast } from "react-toastify";
 
 type CocktailItemProps = {
   cocktail: CocktailType;
@@ -13,6 +14,47 @@ function CocktailItem({ cocktail }: CocktailItemProps) {
   const { dispatch, favorites } = useMainContext();
 
   const isShow = favorites.some((fav) => fav.idDrink === idDrink);
+
+  const addToFavorite = () => {
+    dispatch({
+      type: "ACTION_ADD_FAVORITE",
+      payload: {
+        idDrink,
+        strCategory,
+        number: 1,
+        strDrink,
+        strDrinkThumb,
+      },
+    });
+    toast.success(`|${strDrink}| Added To Favorite List`, {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  };
+
+  const deleteFromFavorite = () => {
+    dispatch({
+      type: "ACTION_DELETE_FAVORITE",
+      payload: idDrink,
+    });
+
+    toast.error(`|${strDrink}| Deleted from Favorite List`, {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  };
 
   return (
     <div className="md:mt-5 mt-7 mx-2 relative rounded-md hover:scale-[1.01] transition-all duration-300 hover:-translate-y-2 ">
@@ -33,28 +75,12 @@ function CocktailItem({ cocktail }: CocktailItemProps) {
         {!isShow ? (
           <BsHeart
             className="text-red-700 hover:-translate-y-2 active:translate-y-1 transition-all duration-300 text-3xl z-50"
-            onClick={() =>
-              dispatch({
-                type: "ACTION_ADD_FAVORITE",
-                payload: {
-                  idDrink,
-                  strCategory,
-                  number: 1,
-                  strDrink,
-                  strDrinkThumb,
-                },
-              })
-            }
+            onClick={addToFavorite}
           />
         ) : (
           <BsHeartFill
             className="text-red-700  hover:-translate-y-2 active:translate-y-1  transition-all duration-300 text-3xl z-50"
-            onClick={() =>
-              dispatch({
-                type: "ACTION_DELETE_FAVORITE",
-                payload: idDrink,
-              })
-            }
+            onClick={deleteFromFavorite}
           />
         )}
       </div>

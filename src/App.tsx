@@ -16,6 +16,8 @@ import Applayout from "./ui/Applayout";
 import "react-loading-skeleton/dist/skeleton.css";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
+import "react-toastify/dist/ReactToastify.css";
+
 import MainContextProvider from "./context/main-context";
 import FilteredDrinkAlcohol from "./features/Cocktails/FilteredDrinkAlcohol";
 import FilteredDrinkCategory from "./features/Cocktails/FilteredDrinkCategory";
@@ -27,6 +29,7 @@ import FilteredMealCategory from "./features/Meals/FilteredMealCategory";
 import FilteredMealIngredient from "./features/Meals/FilteredMealIngredient";
 import FilteredMealSearch from "./features/Meals/FilteredMealSearch";
 import Favorites from "./pages/Favorites";
+import { ToastContainer } from "react-toastify";
 
 const queryClient = new QueryClient();
 
@@ -70,6 +73,18 @@ function App() {
                 <Route path="/:id" element={<Details />} />
               </Route>
             </Routes>
+            <ToastContainer
+              position="bottom-right"
+              autoClose={3000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="colored"
+            />
           </BrowserRouter>
         </SkeletonTheme>
       </MainContextProvider>
