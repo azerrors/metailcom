@@ -15,7 +15,6 @@ function ListElement({ meal, type }: ListElementProps) {
     const { strMeal, strMealThumb, idMeal, strCategory } = meal;
     const isShow = favorites.some((fav) => fav.idMeal === idMeal);
 
-
     return (
       <div className="mt-5 mx-2 relative rounded-md hover:scale-[1.01] transition-all duration-300 hover:-translate-y-2 ">
         <Link to={`/${idMeal}?idMeal=${idMeal}`}>
@@ -39,6 +38,7 @@ function ListElement({ meal, type }: ListElementProps) {
                 dispatch({
                   type: "ACTION_ADD_FAVORITE",
                   payload: {
+                    number: 1,
                     idMeal,
                     strCategory,
                     strMeal,

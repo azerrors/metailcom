@@ -2,7 +2,6 @@ import { BsCart2 } from "react-icons/bs";
 import { FavoritesType, useMainContext } from "../../context/main-context";
 
 import { Link } from "react-router-dom";
-import { useState } from "react";
 
 type FavoriteItemProps = {
   item: FavoritesType;

@@ -15,9 +15,8 @@ function CartItem({ item }: CartItemProps) {
     strDrink,
     strMeal,
     number,
-    strCategory,
   } = item;
-  const { dispatch, cart } = useMainContext();
+  const { dispatch } = useMainContext();
   const [currentNumber, setCurrentNumber] = useState(1);
 
   function increaseValue() {

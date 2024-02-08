@@ -12,7 +12,7 @@ export type FavoritesType = {
   strMealThumb?: string;
   strDrinkThumb?: string;
 
-  number: 1;
+  number: number;
 };
 
 type MainContextProps = {
@@ -201,7 +201,7 @@ type Action =
   | ACTION_ADD_CART_NUMBER
   | ACTION_DELETE_CART_NUMBER;
 
-function reducer(state: MainContextProps, action: Action) {
+function reducer(state: MainContextProps, action: Action): MainContextProps {
   if (action.type === "ACTION_GET_MAIN_INPUT") {
     return {
       ...state,
@@ -209,8 +209,8 @@ function reducer(state: MainContextProps, action: Action) {
       showSearchBar: true,
       mealCategory: "",
       mealIngredient: "",
-      mealGlass: "",
-      mealAlcohol: "",
+      // mealGlass: "",
+      // mealAlcohol: "",
     };
   }
 

@@ -39,6 +39,7 @@ function CocktailItem({ cocktail }: CocktailItemProps) {
                 payload: {
                   idDrink,
                   strCategory,
+                  number: 1,
                   strDrink,
                   strDrinkThumb,
                 },
