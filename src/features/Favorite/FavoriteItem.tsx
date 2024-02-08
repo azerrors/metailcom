@@ -2,6 +2,7 @@ import { BsCart2 } from "react-icons/bs";
 import { FavoritesType, useMainContext } from "../../context/main-context";
 
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 type FavoriteItemProps = {
   item: FavoritesType;
@@ -17,7 +18,10 @@ function FavoriteItem({ item }: FavoriteItemProps) {
     strMeal,
     strCategory,
   } = item;
-  const { dispatch } = useMainContext();
+  const { dispatch, cart } = useMainContext();
+  const isShow = cart.some(
+    (fav) => fav.idDrink === idDrink && fav.idMeal === idMeal
+  );
 
   return (
     <div className="flex hover:bg-tertiary/10 hover:-skew-x-2 transition-all duration-300 justify-between p-5 gap-5 border-b border-tertiary">
@@ -50,9 +54,44 @@ function FavoriteItem({ item }: FavoriteItemProps) {
       </div>
 
       <div className="flex flex-col items-center gap-5">
-        <button className="flex items-center gap-2 bg-tertiary hover:skew-x-2 text-xs hover:skew-y-1 transition-all duration-300 uppercase md:text-xl font-medium md:p-2 p-1 text-secondary rounded-md">
-          add to basket <BsCart2 />
-        </button>
+        {!isShow ? (
+          <button
+            onClick={() =>
+              dispatch({
+                type: "ACTION_ADD_CART",
+                payload: {
+                  idDrink,
+                  number: 1,
+                  idMeal,
+                  strDrinkThumb,
+                  strMealThumb,
+                  strDrink,
+                  strMeal,
+                  strCategory,
+                },
+              })
+            }
+            className="flex items-center gap-2 bg-tertiary hover:skew-x-2 text-xs hover:skew-y-1 transition-all duration-300 uppercase md:text-xl font-medium md:p-2 p-1 text-secondary rounded-md"
+          >
+            add to basket
+            <BsCart2 />
+          </button>
+        ) : (
+          <>
+            <button
+              onClick={() =>
+                dispatch({
+                  type: "ACTION_DELETE_CART",
+                  payload: idDrink ? idDrink : idMeal ? idMeal : "",
+                })
+              }
+              className="flex items-center gap-2 bg-tertiary hover:skew-x-2 text-xs hover:skew-y-1 transition-all duration-300 uppercase md:text-xl font-medium md:p-2 p-1 text-secondary rounded-md"
+            >
+              Delete from basket
+              <BsCart2 />
+            </button>
+          </>
+        )}
         <button
           onClick={() => {
             dispatch({

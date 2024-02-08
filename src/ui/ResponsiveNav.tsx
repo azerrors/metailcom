@@ -62,15 +62,6 @@ function ResponsiveNav() {
         <Button btn="primary">Login</Button>
         <Button btn="secondary">Register</Button>
       </section>
-
-      <section
-        className="flex justify-center mt-10 relative"
-        onClick={closeNavbar}
-      >
-        <Link to="favorites">
-          <BsHeart className="text-secondary text-4xl " />
-        </Link>
-      </section>
     </div>
   );
 }

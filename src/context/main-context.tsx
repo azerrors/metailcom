@@ -1,9 +1,4 @@
-import {
-  ReactNode,
-  createContext,
-  useContext,
-  useReducer
-} from "react";
+import { ReactNode, createContext, useContext, useReducer } from "react";
 
 export type FavoritesType = {
   idMeal?: string;
@@ -16,10 +11,13 @@ export type FavoritesType = {
 
   strMealThumb?: string;
   strDrinkThumb?: string;
+
+  number: 1;
 };
 
 type MainContextProps = {
   favorites: FavoritesType[];
+  cart: FavoritesType[];
 
   mainInput: string;
   showSearchBar: boolean;
@@ -47,6 +45,7 @@ type MainContextProviderProps = {
 const MainContext = createContext<MainContextProps | null>(null);
 const initialState: MainContextProps = {
   favorites: [],
+  cart: [],
   mainInput: "",
   showSearchBar: false,
   showResponsiveNav: false,
@@ -151,6 +150,24 @@ type ACTION_DELETE_FAVORITE = {
   payload: string;
 };
 
+type ACTION_ADD_CART = {
+  type: "ACTION_ADD_CART";
+  payload: FavoritesType;
+};
+type ACTION_DELETE_CART = {
+  type: "ACTION_DELETE_CART";
+  payload: string;
+};
+
+type ACTION_ADD_CART_NUMBER = {
+  type: "ACTION_ADD_CART_NUMBER";
+  payload: { id: string };
+};
+type ACTION_DELETE_CART_NUMBER = {
+  type: "ACTION_DELETE_CART_NUMBER";
+  payload: { id: string };
+};
+
 type ACTION_OPEN_COCKTAIL_SIDEBAR = {
   type: "ACTION_OPEN_COCKTAIL_SIDEBAR";
 };
@@ -178,7 +195,11 @@ type Action =
   | ACTION_OPEN_COCKTAIL_SIDEBAR
   | ACTION_CLOSE_COCKTAIL_SIDEBAR
   | ACTION_ADD_FAVORITE
-  | ACTION_DELETE_FAVORITE;
+  | ACTION_DELETE_FAVORITE
+  | ACTION_ADD_CART
+  | ACTION_DELETE_CART
+  | ACTION_ADD_CART_NUMBER
+  | ACTION_DELETE_CART_NUMBER;
 
 function reducer(state: MainContextProps, action: Action) {
   if (action.type === "ACTION_GET_MAIN_INPUT") {
@@ -256,6 +277,51 @@ function reducer(state: MainContextProps, action: Action) {
     return {
       ...state,
       favorites: [...state.favorites, action.payload],
+    };
+  }
+  //================================================================================================
+  if (action.type === "ACTION_DELETE_CART") {
+    return {
+      ...state,
+      cart: state.cart.filter(
+        (item) =>
+          item.idDrink !== action.payload && item.idMeal !== action.payload
+      ),
+    };
+  }
+
+  if (action.type === "ACTION_ADD_CART") {
+    return {
+      ...state,
+      cart: [...state.cart, action.payload],
+    };
+  }
+
+  if (action.type === "ACTION_ADD_CART_NUMBER") {
+    return {
+      ...state,
+      cart: state.cart.map((item) =>
+        item.idDrink === action.payload.id || item.idMeal === action.payload.id
+          ? {
+              ...item,
+              number: item.number + 1,
+            }
+          : item
+      ),
+    };
+  }
+
+  if (action.type === "ACTION_DELETE_CART_NUMBER") {
+    return {
+      ...state,
+      cart: state.cart.map((item) =>
+        item.idDrink === action.payload.id || item.idMeal === action.payload.id
+          ? {
+              ...item,
+              number: item.number - 1,
+            }
+          : item
+      ),
     };
   }
   //================================================================================================
@@ -386,6 +452,7 @@ export default function MainContextProvider({
   const [
     {
       favorites,
+      cart,
       mainInput,
       showSearchBar,
       showResponsiveNav,
@@ -408,6 +475,7 @@ export default function MainContextProvider({
     <MainContext.Provider
       value={{
         favorites,
+        cart,
         mainInput,
         showSearchBar,
         showResponsiveNav,

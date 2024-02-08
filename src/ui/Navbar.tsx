@@ -1,11 +1,12 @@
 import { FaRegHeart } from "react-icons/fa6";
 import { FaBars } from "react-icons/fa6";
-import { BsCart, BsCart2 } from "react-icons/bs";
+import { BsCart, BsCart2, BsHeart } from "react-icons/bs";
 
 import { useMainContext } from "../context/main-context";
 
 import Button from "./reusable/Button";
 import Input from "./reusable/Input";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   const { mainInput, dispatch } = useMainContext();
@@ -36,9 +37,9 @@ function Navbar() {
               })
             }
           />
-        </div> 
+        </div>
         {/* RESPONSIVE NAVBAR */}
-        <div className="flex md:hidden  items-center gap-6">
+        <div className="flex md:hidden  items-center gap-3">
           <FaBars
             className="text-2xl  text-secondary "
             onClick={() => dispatch({ type: "ACTION_OPEN_RESPONSIVE_NAV" })}
@@ -57,7 +58,14 @@ function Navbar() {
               }
             />
           </div>
-          <BsCart className="text-2xl text-secondary " />
+          <div className="flex items-center gap-2 justify-center">
+            <Link to="cart">
+              <BsCart className="text-2xl text-secondary " />
+            </Link>
+            <Link to="favorites">
+              <BsHeart className="text-secondary mt-1 text-2xl " />
+            </Link>
+          </div>
         </div>
 
         <div className="md:flex items-center gap-2 hidden   ">

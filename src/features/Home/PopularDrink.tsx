@@ -1,8 +1,7 @@
-import { Link } from "react-router-dom";
-import { CocktailType } from "./PopularDrinksList";
-import { useMainContext } from "../../context/main-context";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
-import useLocalStorage from "../../hooks/useLocalStorage";
+import { Link } from "react-router-dom";
+import { useMainContext } from "../../context/main-context";
+import { CocktailType } from "./PopularDrinksList";
 
 type PopularDrinkProps = {
   cocktail: CocktailType;
@@ -19,6 +18,7 @@ function PopularDrink({ cocktail }: PopularDrinkProps) {
     dispatch({
       type: "ACTION_ADD_FAVORITE",
       payload: {
+        number: 1,
         idDrink,
         strCategory,
         strDrink,
