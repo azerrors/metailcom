@@ -11,27 +11,28 @@ function Details() {
   const idDrink = searchParam.get("idDrink");
   const idMeal = searchParam.get("idMeal");
 
-  const { data: meal } = useQuery({
+  const { data: meal,  } = useQuery({
     queryKey: ["cocktailDetail", idMeal],
     queryFn: () => getMealByID(idMeal!.toString()),
   });
 
-  const { data: cocktail } = useQuery({
+  const { data: cocktail,  } = useQuery({
     queryKey: ["cocktailDetail", idDrink],
     queryFn: () => getCocktailByID(idDrink!.toString()),
   });
 
+
   if (meal) {
     return (
       <div className="md:mx-72 ">
-        <DetailList meal={meal} />
+        <DetailList meal={meal}  />
       </div>
     );
   }
   if (cocktail) {
     return (
       <div className="md:mx-72 ">
-        <DetailList cocktail={cocktail} />
+        <DetailList cocktail={cocktail}  />
       </div>
     );
   }

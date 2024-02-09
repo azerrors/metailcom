@@ -21,9 +21,9 @@ function FilteredMealSearch() {
   return (
     <div>
       <div className="flex items-center justify-center gap-5  md:justify-end md:mx-24">
-      <div className="md:hidden">
+      <div className="md:hidden ">
           <FaList
-            className="text-tertiary text-xl"
+            className="text-tertiary_light dark:text-secondary text-xl"
             onClick={() => dispatch({ type: "ACTION_OPEN_MEAL_SIDEBAR" })}
           />
       </div>

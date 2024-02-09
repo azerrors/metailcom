@@ -88,7 +88,7 @@ function FavoriteItem({ item }: FavoriteItemProps) {
   };
 
   return (
-    <div className="flex hover:bg-tertiary/10 hover:-skew-x-2 transition-all duration-300 justify-between p-5 gap-5 border-b border-tertiary">
+    <div className="flex hover:bg-tertiary_light/10 bg:hover:bg-tertiary_dark/10  hover:-skew-x-2 transition-all duration-300 justify-between p-5 gap-5 border-b border-tertiary_light ">
       <div>
         <Link
           to={`/${idMeal ? idMeal : idDrink}?${idMeal ? "idMeal" : "idDrink"}=${
@@ -106,10 +106,10 @@ function FavoriteItem({ item }: FavoriteItemProps) {
 
           <div>
             <div>
-              <h4 className="md:text-xl w-16 md:w-56 font-medium truncate">
+              <h4 className="md:text-xl dark:text-secondary w-16 md:w-56 font-medium truncate">
                 {strDrink ? strDrink : strMeal}
               </h4>
-              <p className="text-sm w-16 md:w-56 text-stone-500 truncate">
+              <p className="text-sm w-16 md:w-56 text-stone-500 dark:text-tertiary_light truncate">
                 {strCategory}
               </p>
             </div>
@@ -121,7 +121,7 @@ function FavoriteItem({ item }: FavoriteItemProps) {
         {!isShow ? (
           <button
             onClick={addToCart}
-            className="flex items-center gap-2 bg-tertiary hover:skew-x-2 text-xs hover:skew-y-1 transition-all duration-300 uppercase md:text-xl font-medium md:p-2 p-1 text-secondary rounded-md"
+            className="flex items-center gap-2 bg-tertiary_light dark:bg-tertiary_dark hover:skew-x-2 text-xs hover:skew-y-1 transition-all duration-300 uppercase md:text-xl font-medium md:p-2 p-1 text-secondary rounded-md"
           >
             add to basket
             <BsCart2 />
@@ -130,7 +130,7 @@ function FavoriteItem({ item }: FavoriteItemProps) {
           <>
             <button
               onClick={deleteFromCart}
-              className="flex items-center gap-2 bg-tertiary hover:skew-x-2 text-xs hover:skew-y-1 transition-all duration-300 uppercase md:text-xl font-medium md:p-2 p-1 text-secondary rounded-md"
+              className="flex items-center gap-2 bg-tertiary_light dark:bg-tertiary_dark hover:skew-x-2 text-xs hover:skew-y-1 transition-all duration-300 uppercase md:text-xl font-medium md:p-2 p-1 text-secondary rounded-md"
             >
               Delete from basket
               <BsCart2 />
@@ -139,7 +139,7 @@ function FavoriteItem({ item }: FavoriteItemProps) {
         )}
         <button
           onClick={deleteFromFavorite}
-          className="text-tertiary uppercase md:text-md text-xs font-medium tracking-wider hover:bg-red-300 rounded-md transition-all md:p-2 p-1 duration-300"
+          className=" uppercase md:text-md  text-red-700 text-xs font-medium tracking-wider hover:bg-red-300 rounded-md transition-all md:p-2 p-1 duration-300"
         >
           delete from list
         </button>

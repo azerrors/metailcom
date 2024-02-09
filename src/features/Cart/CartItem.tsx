@@ -59,7 +59,7 @@ function CartItem({ item }: CartItemProps) {
     });
   };
   return (
-    <div className=" border-4 flex items-center justify-between gap-7  hover:bg-tertiary/10 hover:-skew-x-2 transition-all duration-300 ">
+    <div className=" border-4 dark:border-tertiary_dark flex items-center justify-between gap-7  hover:bg-tertiary_light/10 dark:hover:bg-tertiary_dark/10 hover:-skew-x-2 transition-all duration-300 ">
       <div className="flex gap-6 p-2">
         <Link
           to={`/${idMeal ? idMeal : idDrink}?${idMeal ? "idMeal" : "idDrink"}=${
@@ -74,16 +74,16 @@ function CartItem({ item }: CartItemProps) {
           />
         </Link>
         <div className="p-2 flex flex-col justify-between">
-          <h4 className="md:text-xl font-medium tracking-wider ">
+          <h4 className="md:text-xl font-medium dark:text-secondary tracking-wider ">
             {strDrink ? strDrink : strMeal}
           </h4>
           <FaTrashAlt
             onClick={deleteFromCart}
-            className="md:text-2xl text-tertiary cursor-pointer hover:text-red-800 transition-all duration-200"
+            className="md:text-2xl text-red-600 cursor-pointer hover:text-red-800 transition-all duration-200"
           />
         </div>
       </div>
-      <div className="flex flex-col px-10">
+      <div className="flex dark:text-secondary flex-col px-10">
         <button onClick={increaseValue}>+</button>
         <p>{number}</p>
         <button onClick={decreaseValue}>-</button>

@@ -19,7 +19,7 @@ function CocktailSidebar({
   const { dispatch } = useMainContext();
 
   return (
-    <div className="absolute top-0  bg-secondary   overflow-y-hidden w-full z-50">
+    <div className="absolute top-0 dark:bg-tertiary_dark dark:text-secondary bg-secondary  overflow-y-hidden w-full z-50">
       <section
         className="flex justify-end p-1 fixed top-0 right-0"
         onClick={() => dispatch({ type: "ACTION_CLOSE_COCKTAIL_SIDEBAR" })}
@@ -27,10 +27,10 @@ function CocktailSidebar({
         <MdOutlineCloseFullscreen className="text-2xl" />
       </section>
 
-      <div className="flex flex-col mt-5 gap-10">
+      <div className="flex flex-col mt-5  gap-10">
         <section>
           <div className="px-10 ">
-            <h3 className="text-xl font-medium mb-5 border-b border-tertiary">
+            <h3 className="text-xl dark:text-secondary font-medium mb-5 border-b border-tertiary">
               CATEGORY
             </h3>
             <ul className="grid grid-cols-2 gap-8">
@@ -58,7 +58,7 @@ function CocktailSidebar({
 
         <section>
           <div className="px-10 ">
-            <h3 className="text-xl font-medium mb-5 border-b border-tertiary">
+            <h3 className="text-xl dark:text-secondary font-medium mb-5 border-b border-tertiary">
               GLASS
             </h3>
             <ul className="grid grid-cols-2 gap-8">
@@ -86,7 +86,7 @@ function CocktailSidebar({
 
         <section>
           <div className="px-10 ">
-            <h3 className="text-xl font-medium mb-5 border-b border-tertiary">
+            <h3 className="text-xl dark:text-secondary font-medium mb-5 border-b border-tertiary">
               ALCOHOL
             </h3>
             <ul className="grid grid-cols-2 gap-8">
@@ -114,7 +114,7 @@ function CocktailSidebar({
 
         <section>
           <div className="px-10 ">
-            <h3 className="text-xl font-medium mb-5 border-b border-tertiary">
+            <h3 className="text-xl dark:text-secondary font-medium mb-5 border-b border-tertiary">
               INGREDIENT
             </h3>
             <ul className="grid grid-cols-2 gap-8">

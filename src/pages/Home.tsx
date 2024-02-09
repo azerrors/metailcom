@@ -43,15 +43,15 @@ function Home() {
       </section>
 
       <section className="overflow-x-hidden">
-        <h2 className="md:text-3xl uppercase tracking-wider mt-20 bg-tertiary/70 p-3 text-secondary">
+        <h2 className="md:text-3xl uppercase tracking-wider mt-20 bg-tertiary_light/70 dark:bg-tertiary_dark/70 p-3 text-secondary">
           Trending RECIPES
         </h2>
         <List type="list1" meal={trending} loading={trendLoading} />
       </section>
 
       <section className="overflow-x-hidden">
-        <h2 className="md:text-3xl uppercase tracking-wider mt-10 p-3 text-tertiary">
-          <span className="bg-tertiary/90 rounded-md p-2 text-secondary">
+        <h2 className="md:text-3xl uppercase tracking-wider dark:text-secondary mt-10 p-3 text-tertiary">
+          <span className="bg-tertiary_light/90 dark:bg-tertiary_dark/90 text-secondary rounded-md p-2 ">
             Meal
           </span>{" "}
           Categories
@@ -68,11 +68,11 @@ function Home() {
           />
         </div>
         <div className="px-8 md:pt-16 pt-5 md:w-[40%]">
-          <p className="uppercase md:text-medium text-sm font-semibold text-stone-800/50 ">Seafood</p>
-          <h2 className="md:text-xl uppercase font-semibold tracking-wider ">
+          <p className="uppercase md:text-medium text-sm font-semibold text-stone-800/50 dark:text-stone-400 ">Seafood</p>
+          <h2 className="md:text-xl dark:text-secondary uppercase font-semibold tracking-wider ">
             Baked salmon with fennel & tomatoes
           </h2>
-          <p className="text-sm mt-3">
+          <p className="text-sm mt-3 dark:text-secondary">
             Heat oven to 180C\/fan 160C\/gas 4. Trim the fronds from the fennel
             and set aside. Cut the fennel bulbs in half, then cut each half into
             3 wedges. Cook in boiling salted water for 10 mins, then drain well.
@@ -87,7 +87,7 @@ function Home() {
       </section>
 
       <section>
-        <h2 className="text-3xl mb-5 uppercase tracking-wider mt-20 bg-tertiary/70 p-3 text-secondary">
+        <h2 className="text-3xl mb-5 uppercase tracking-wider mt-20 bg-tertiary_light/70 dark:bg-tertiary_dark/70 p-3 text-secondary">
           Popular Drinks
         </h2>
         <PopularDrinksList cocktails={popularDrinks} />

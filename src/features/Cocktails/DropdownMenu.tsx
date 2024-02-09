@@ -50,12 +50,12 @@ function DropdownMenu() {
   return (
     <div className="md:flex hidden gap-5 transition-all duration-300">
       <div className="group">
-        <p className="flex items-center gap-1 text-lg font-medium group-hover:border-b-2 border-tertiary p-1">
+        <p className="flex dark:text-secondary items-center gap-1 text-lg font-medium group-hover:border-b-2 border-tertiary p-1">
           Category
           <BsArrowDownShort className="group-hover:hidden" />
           <BsArrowUpShort className="hidden group-hover:inline-block" />
         </p>
-        <div className="bg-stone-100 min-w-56 absolute z-50  p-10 hidden group-hover:inline-block">
+        <div className="bg-stone-100 dark:bg-tertiary_dark dark:text-secondary min-w-56 absolute z-50  p-10 hidden group-hover:inline-block">
           <div className="flex p"></div>
           <ul className="grid grid-cols-4 gap-8">
             {cocktailCategoryList?.map((category: { strCategory: string }) => {
@@ -81,12 +81,12 @@ function DropdownMenu() {
       </div>
 
       <div className="group">
-        <p className="flex items-center gap-1 text-lg font-medium group-hover:border-b-2 border-tertiary p-1">
+        <p className="flex  dark:text-secondary items-center gap-1 text-lg font-medium group-hover:border-b-2 border-tertiary p-1">
           Alcohol
           <BsArrowDownShort className="group-hover:hidden" />
           <BsArrowUpShort className="hidden group-hover:inline-block" />
         </p>
-        <div className="bg-stone-100 min-w-56 absolute z-50  p-10 hidden group-hover:inline-block">
+        <div className="bg-stone-100 dark:bg-tertiary_dark dark:text-secondary min-w-56 absolute z-50  p-10 hidden group-hover:inline-block">
           <div className="flex p"></div>
           <ul className="grid grid-cols-4 gap-8">
             {cocktailAlcoholList?.map((category: { strAlcoholic: string }) => {
@@ -112,12 +112,12 @@ function DropdownMenu() {
       </div>
 
       <div className="group">
-        <p className="flex items-center gap-1 text-lg font-medium group-hover:border-b-2 border-tertiary p-1">
+        <p className="flex items-center dark:text-secondary  gap-1 text-lg font-medium group-hover:border-b-2 border-tertiary p-1">
           Glass
           <BsArrowDownShort className="group-hover:hidden" />
           <BsArrowUpShort className="hidden group-hover:inline-block" />
         </p>
-        <div className="bg-stone-100 min-w-56 absolute z-50  p-10 hidden group-hover:inline-block">
+        <div className="bg-stone-100 dark:bg-tertiary_dark dark:text-secondary min-w-56 absolute z-50  p-10 hidden group-hover:inline-block">
           <div className="flex p"></div>
           <ul className="grid grid-cols-4 gap-8">
             {cocktailGlassList?.map((category: { strGlass: string }) => {
@@ -143,12 +143,12 @@ function DropdownMenu() {
       </div>
 
       <div className="group">
-        <p className="flex items-center gap-1 text-lg font-medium group-hover:border-b-2 border-tertiary p-1">
+        <p className="flex dark:text-secondary items-center gap-1 text-lg font-medium group-hover:border-b-2 border-tertiary p-1">
           Ingredient
           <BsArrowDownShort className="group-hover:hidden" />
           <BsArrowUpShort className="hidden group-hover:inline-block" />
         </p>
-        <div className="bg-stone-100 min-w-56 absolute z-50  p-10 hidden group-hover:inline-block">
+        <div className="bg-stone-100 dark:bg-tertiary_dark dark:text-secondary min-w-56 absolute z-50  p-10 hidden group-hover:inline-block">
           <div className="flex p"></div>
           <ul className="grid grid-cols-5 w-[50rem]  gap-8 h-60 overflow-auto">
             {cocktailIngredientList?.map(

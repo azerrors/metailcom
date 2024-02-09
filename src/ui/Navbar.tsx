@@ -7,12 +7,13 @@ import { useMainContext } from "../context/main-context";
 import Button from "./reusable/Button";
 import Input from "./reusable/Input";
 import { Link } from "react-router-dom";
+import Theme from "./Theme";
 
 function Navbar() {
   const { mainInput, dispatch } = useMainContext();
 
   return (
-    <div className="border  shadow-lg md:px-16 px-5 py-10 bg-tertiary ">
+    <div className="  shadow-lg md:px-16 px-5 py-10 bg-tertiary_light dark:bg-tertiary_dark ">
       <div className="flex justify-center gap-48 items-center">
         <div className="hidden md:inline-block">
           <Button btn="none" to="/">
@@ -44,7 +45,7 @@ function Navbar() {
             className="text-2xl  text-secondary "
             onClick={() => dispatch({ type: "ACTION_OPEN_RESPONSIVE_NAV" })}
           />
-          <div>
+          <div >
             <Input
               type="text"
               placeholder="search foods and cocktails"
@@ -79,6 +80,7 @@ function Navbar() {
           <Button btn="nav_secondary" to="cart">
             <BsCart2 className="text-2xl" />
           </Button>
+          <Theme />
         </div>
       </div>
 

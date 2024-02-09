@@ -25,8 +25,9 @@ type StylesType = {
 const styles: StylesType = {
   none: "",
   primary:
-    "font-medium border border-secondary hover:bg-tertiary/90 active:text-secondary hover:text-secondary/40 tracking-wider hover:-translate-y-2 active:translate-y-1 transition-all duration-300 uppercase bg-tertiary text-secondary md:text-xl md:px-5 px-3 py-2 md:py-3 rounded-md",
-  secondary: "bg-secondary px-3 py-2 tracking-wider rounded-md uppercase font-medium text-tertiary",
+    "font-medium border border-secondary hover:bg-tertiary/90 active:text-secondary hover:text-secondary/40 tracking-wider hover:-translate-y-2 active:translate-y-1 transition-all duration-300 uppercase bg-tertiary_light dark:bg-tertiary_dark text-secondary md:text-xl md:px-5 px-3 py-2 md:py-3 rounded-md",
+  secondary:
+    "bg-secondary dark:text-primary_light px-3 py-2 tracking-wider rounded-md uppercase font-medium text-tertiary",
 
   nav_primary:
     "text-md uppercase  text-secondary font-semibold hover:bg-stone-100/50 p-1   rounded-md transition-all duration-200",

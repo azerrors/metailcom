@@ -5,6 +5,9 @@ import {
   getMealByCategory,
 } from "../../services/mealApi/mealMain";
 
+import { BsCart2, BsHeart } from "react-icons/bs";
+import { toast } from "react-toastify";
+import { useMainContext } from "../../context/main-context";
 import {
   getCocktailsByAlcohol,
   getCocktailsByCategory,
@@ -17,9 +20,6 @@ import SimilarCocktailAlcoholicItem from "./drink/SimilarCocktailAlcoholicItem";
 import SimilarCocktailCategoryItem from "./drink/SimilarCocktailCategoryItem";
 import SimilarCocktailGlassItem from "./drink/SimilarCocktailGlassItem";
 import SimilarMealItem from "./meal/SimilarMealItem";
-import { useMainContext } from "../../context/main-context";
-import { BsCart2,BsHeart } from "react-icons/bs";
-import { toast } from "react-toastify";
 
 type Props = {
   meal?: MealTypes;
@@ -81,7 +81,7 @@ function DetailItem({ meal, cocktail }: Props) {
   } = cocktail || {};
 
   const imageStyle = "mb-4 md:mx-2 md:max-w-32 ";
-  const h3Style = "text-center font-semibold text-sm";
+  const h3Style = "text-center dark:text-secondary font-semibold text-sm";
 
   // useEffect(() => {
   //   setIngredient([
@@ -141,6 +141,7 @@ function DetailItem({ meal, cocktail }: Props) {
   const isFav = favorites.some(
     (fav) => fav.idDrink === idDrink && fav.idMeal === idMeal
   );
+
   const addToCart = () => {
     dispatch({
       type: "ACTION_ADD_CART",
@@ -213,7 +214,6 @@ function DetailItem({ meal, cocktail }: Props) {
     dispatch({
       type: "ACTION_DELETE_FAVORITE",
       payload: idDrink ? idDrink : idMeal ? idMeal : "",
-
     });
     toast.error(`|${strMeal}| Deleted To Favorite List`, {
       position: "top-right",
@@ -230,7 +230,7 @@ function DetailItem({ meal, cocktail }: Props) {
   if (meal) {
     return (
       <div className="mt-16 overflow-x-hidden ">
-        <section className="flex flex-col md:flex-row border border-stone-300">
+        <section className="flex flex-col md:flex-row md:border  border-stone-300">
           <div className="md:w-[60%]">
             <img
               src={strMealThumb}
@@ -240,23 +240,25 @@ function DetailItem({ meal, cocktail }: Props) {
           </div>
           <div className="md:w-[40%]">
             <div className="px-10">
-              <h2 className="md:text-3xl text-xl tracking-widest pt-10 font-semibold text-stone-700">
+              <h2 className="md:text-3xl dark:text-secondary text-xl tracking-widest pt-10 font-semibold text-stone-700">
                 {strMeal}
               </h2>
-              <div className="pb-5 flex gap-2 ">
+              <div className="pb-5 flex gap-2 dark:text-stone-500 ">
                 <h4>{strCategory}</h4>/<h4>{strArea}</h4>
               </div>
-              <p className="md:text-sm text-xs ">{strInstructions}</p>
+              <p className="md:text-sm text-xs dark:text-secondary">
+                {strInstructions}
+              </p>
             </div>
           </div>
         </section>
 
-        <section className = "flex justify-end mt-5 gap-5 ">
+        <section className="flex justify-end mt-5 gap-5 ">
           <div>
             {!isCart ? (
               <button
                 onClick={addToCart}
-                className="flex items-center gap-2 bg-tertiary hover:skew-x-2 text-xs hover:skew-y-1 transition-all duration-300 uppercase md:text-xl font-medium md:p-2 p-1 text-secondary rounded-md"
+                className="flex items-center gap-2 bg-tertiary_light dark:bg-tertiary_dark hover:skew-x-2 text-xs hover:skew-y-1 transition-all duration-300 uppercase md:text-xl font-medium md:p-2 p-1 text-secondary rounded-md"
               >
                 add to basket
                 <BsCart2 />
@@ -265,7 +267,7 @@ function DetailItem({ meal, cocktail }: Props) {
               <>
                 <button
                   onClick={deleteFromCart}
-                  className="flex items-center gap-2 bg-tertiary hover:skew-x-2 text-xs hover:skew-y-1 transition-all duration-300 uppercase md:text-xl font-medium md:p-2 p-1 text-secondary rounded-md"
+                  className="flex items-center gap-2  bg-tertiary_light dark:bg-tertiary_dark hover:skew-x-2 text-xs hover:skew-y-1 transition-all duration-300 uppercase md:text-xl font-medium md:p-2 p-1 text-secondary rounded-md"
                 >
                   Delete from basket
                   <BsCart2 />
@@ -276,7 +278,7 @@ function DetailItem({ meal, cocktail }: Props) {
           {!isFav ? (
             <button
               onClick={addToFavorite}
-              className="flex items-center gap-2 bg-tertiary hover:skew-x-2 text-xs hover:skew-y-1 transition-all duration-300 uppercase md:text-xl font-medium md:p-2 p-1 text-secondary rounded-md"
+              className="flex items-center gap-2 bg-tertiary_light dark:bg-tertiary_dark hover:skew-x-2 text-xs hover:skew-y-1 transition-all duration-300 uppercase md:text-xl font-medium md:p-2 p-1 text-secondary rounded-md"
             >
               add to favorite
               <BsHeart />
@@ -284,7 +286,7 @@ function DetailItem({ meal, cocktail }: Props) {
           ) : (
             <button
               onClick={deleteFromFavorite}
-              className="flex items-center gap-2 bg-tertiary hover:skew-x-2 text-xs hover:skew-y-1 transition-all duration-300 uppercase md:text-xl font-medium md:p-2 p-1 text-secondary rounded-md"
+              className="flex items-center gap-2 bg-tertiary_light dark:bg-tertiary_dark hover:skew-x-2 text-xs hover:skew-y-1 transition-all duration-300 uppercase md:text-xl font-medium md:p-2 p-1 text-secondary rounded-md"
             >
               delete from favorite
               <BsHeart />
@@ -293,11 +295,11 @@ function DetailItem({ meal, cocktail }: Props) {
         </section>
 
         <section>
-          <h2 className="md:text-3xl uppercase tracking-wider mt-20 bg-tertiary/70 p-3 text-secondary">
+          <h2 className="md:text-3xl mb-8 uppercase tracking-wider mt-20 dark:bg-tertiary_dark/70 bg-tertiary_light/70 p-3 text-secondary">
             Ingredients
           </h2>
 
-          <div className=" mt-4 hidden md:flex gap-2 bg-tertiary/10 p-2">
+          <div className=" mt-4 flex-wrap justify-center hidden md:flex gap-2 bg-tertiary_light/10 dark:bg-tertiary_dark/10 p-2">
             {strIngredient1 && (
               <div>
                 <img
@@ -489,9 +491,9 @@ function DetailItem({ meal, cocktail }: Props) {
         </section>
 
         <section>
-          <h2 className="md:text-3xl flex gap-2  items-center uppercase tracking-wider mt-10 p-3 text-tertiary">
+          <h2 className="md:text-3xl flex gap-2  items-center uppercase tracking-wider mt-10 p-3 text-tertiary_light dark:text-secondary">
             More
-            <span className="bg-tertiary/90 rounded-md p-2 text-secondary">
+            <span className="bg-tertiary_light/90  dark:bg-tertiary_dark/90 rounded-md p-2 text-secondary">
               {strCategory}
             </span>
             {""}
@@ -514,9 +516,9 @@ function DetailItem({ meal, cocktail }: Props) {
         </section>
 
         <section>
-          <h2 className="md:text-3xl flex gap-2  items-center uppercase tracking-wider mt-10 p-3 text-tertiary">
+          <h2 className="md:text-3xl flex gap-2  items-center uppercase tracking-wider mt-10 p-3 text-tertiary_light/90 dark:text-secondary">
             More
-            <span className="bg-tertiary/90 rounded-md p-2 text-secondary">
+            <span className="bg-tertiary_light/90  dark:bg-tertiary_dark/90 rounded-md p-2 text-secondary">
               {strArea}
             </span>
             {""}
@@ -550,7 +552,7 @@ function DetailItem({ meal, cocktail }: Props) {
   if (cocktail) {
     return (
       <div className="mt-16 overflow-x-hidden ">
-        <section className="flex flex-col md:flex-row border border-stone-300">
+        <section className="flex flex-col md:flex-row md:border border-stone-300">
           <div className="md:w-[60%]">
             <img
               src={strDrinkThumb}
@@ -560,27 +562,157 @@ function DetailItem({ meal, cocktail }: Props) {
           </div>
           <div className="md:w-[40%]">
             <div className="px-10">
-              <h2 className="md:text-3xl text-xl tracking-widest pt-10 font-semibold text-stone-700">
+              <h2 className="md:text-3xl text-xl tracking-widest dark:text-secondary pt-10 font-semibold text-stone-700">
                 {strDrink}
               </h2>
-              <div className="pb-5 flex gap-2 ">
+              <div className="pb-5 flex gap-2 dark:text-stone-500 ">
                 <h4>{strDrinkCategory}</h4>/<h4>{strAlcoholic}</h4>/
                 <h4>{strGlass}</h4>
               </div>
-              <p className="text-sm ">{strDrinkInstructions}</p>
+              <p className="text-sm dark:text-secondary ">
+                {strDrinkInstructions}
+              </p>
             </div>
           </div>
         </section>
 
-        <section>
-          <div></div>
+        <section className="flex justify-end mt-10 gap-5 ">
+          <div>
+            {!isCart ? (
+              <button
+                onClick={addToCart}
+                className="flex items-center gap-2 bg-tertiary_light dark:bg-tertiary_dark hover:skew-x-2 text-xs hover:skew-y-1 transition-all duration-300 uppercase md:text-xl font-medium md:p-2 p-1 text-secondary rounded-md"
+              >
+                add to basket
+                <BsCart2 />
+              </button>
+            ) : (
+              <>
+                <button
+                  onClick={deleteFromCart}
+                  className="flex items-center gap-2  bg-tertiary_light dark:bg-tertiary_dark hover:skew-x-2 text-xs hover:skew-y-1 transition-all duration-300 uppercase md:text-xl font-medium md:p-2 p-1 text-secondary rounded-md"
+                >
+                  Delete from basket
+                  <BsCart2 />
+                </button>
+              </>
+            )}
+          </div>
+          {!isFav ? (
+            <button
+              onClick={addToFavorite}
+              className="flex items-center gap-2 bg-tertiary_light dark:bg-tertiary_dark hover:skew-x-2 text-xs hover:skew-y-1 transition-all duration-300 uppercase md:text-xl font-medium md:p-2 p-1 text-secondary rounded-md"
+            >
+              add to favorite
+              <BsHeart />
+            </button>
+          ) : (
+            <button
+              onClick={deleteFromFavorite}
+              className="flex items-center gap-2 bg-tertiary_light dark:bg-tertiary_dark hover:skew-x-2 text-xs hover:skew-y-1 transition-all duration-300 uppercase md:text-xl font-medium md:p-2 p-1 text-secondary rounded-md"
+            >
+              delete from favorite
+              <BsHeart />
+            </button>
+          )}
         </section>
 
         <section>
-          <h2 className="md:text-3xl uppercase tracking-wider mt-20 bg-tertiary/70 p-3 text-secondary">
+          <h2 className="md:text-3xl uppercase tracking-wider mt-20 bg-tertiary_light/70 dark:bg-tertiary_dark/70 p-3 text-secondary">
             Ingredients
           </h2>
-          <div className=" mt-4  bg-tertiary/10 p-2">
+          <div className="md:flex hidden flex-wrap justify-center mt-4 dark:bg-tertiary_dark/10  bg-tertiary_light/10 p-2">
+            {strDrinkIngredient1 && (
+              <div>
+                <img
+                  src={`https://www.themealdb.com/images/ingredients/${strDrinkIngredient1}.png`}
+                  alt=""
+                  className={imageStyle}
+                />
+                <h3 className={h3Style}>{strDrinkIngredient1}</h3>
+                <h3 className={h3Style}>{strDrinkMeasure1}</h3>
+              </div>
+            )}
+            {strDrinkIngredient2 && (
+              <div>
+                <img
+                  src={`https://www.themealdb.com/images/ingredients/${strDrinkIngredient2}.png`}
+                  alt=""
+                  className={imageStyle}
+                />
+                <h3 className={h3Style}>{strDrinkIngredient2}</h3>
+                <h3 className={h3Style}>{strDrinkMeasure2}</h3>
+              </div>
+            )}
+            {strDrinkIngredient3 && (
+              <div>
+                <img
+                  src={`https://www.themealdb.com/images/ingredients/${strDrinkIngredient3}.png`}
+                  alt=""
+                  className={imageStyle}
+                />
+                <h3 className={h3Style}>{strDrinkIngredient3}</h3>
+                <h3 className={h3Style}>{strDrinkMeasure3}</h3>
+              </div>
+            )}
+            {strDrinkIngredient4 && (
+              <div>
+                <img
+                  src={`https://www.themealdb.com/images/ingredients/${strDrinkIngredient4}.png`}
+                  alt=""
+                  className={imageStyle}
+                />
+                <h3 className={h3Style}>{strDrinkIngredient4}</h3>
+                <h3 className={h3Style}>{strDrinkMeasure4}</h3>
+              </div>
+            )}
+            {strDrinkIngredient5 && (
+              <div>
+                <img
+                  src={`https://www.themealdb.com/images/ingredients/${strDrinkIngredient5}.png`}
+                  alt=""
+                  className={imageStyle}
+                />
+                <h3 className={h3Style}>{strDrinkIngredient5}</h3>
+                <h3 className={h3Style}>{strDrinkMeasure5}</h3>
+              </div>
+            )}
+            {strDrinkIngredient6 && (
+              <div>
+                <img
+                  src={`https://www.themealdb.com/images/ingredients/${strDrinkIngredient6}.png`}
+                  alt=""
+                  className={imageStyle}
+                />
+                <h3 className={h3Style}>{strDrinkIngredient6}</h3>
+                <h3 className={h3Style}>{strDrinkMeasure6}</h3>
+              </div>
+            )}
+            {strDrinkIngredient7 && (
+              <div>
+                <img
+                  src={`https://www.themealdb.com/images/ingredients/${strDrinkIngredient7}.png`}
+                  alt=""
+                  className={imageStyle}
+                />
+                <h3 className={h3Style}>{strDrinkIngredient7}</h3>
+                <h3 className={h3Style}>{strDrinkMeasure7}</h3>
+              </div>
+            )}
+            {strDrinkIngredient8 && (
+              <div>
+                <img
+                  src={`https://www.themealdb.com/images/ingredients/${strDrinkIngredient8}.png`}
+                  alt=""
+                  className={imageStyle}
+                />
+                <h3 className={h3Style}>{strDrinkIngredient8}</h3>
+                <h3 className={h3Style}>{strDrinkMeasure8}</h3>
+              </div>
+            )}
+          </div>
+
+          <div className="md:hidden p-3">
             <SliderV
               slidesToShow400={2}
               slidesToScroll400={2}
@@ -681,9 +813,9 @@ function DetailItem({ meal, cocktail }: Props) {
         </section>
 
         <section>
-          <h2 className="md:text-3xl flex gap-2  items-center uppercase tracking-wider mt-10 p-3 text-tertiary">
+          <h2 className="md:text-3xl flex gap-2  items-center uppercase dark:text-secondary tracking-wider mt-10 p-3 text-tertiary_light">
             More
-            <span className="bg-tertiary/90 rounded-md p-2 text-secondary">
+            <span className="bg-tertiary_light/90 dark:bg-tertiary_dark/90 rounded-md p-2 text-secondary">
               {strDrinkCategory}
             </span>
             {""}
@@ -712,9 +844,9 @@ function DetailItem({ meal, cocktail }: Props) {
         </section>
 
         <section>
-          <h2 className="md:text-3xl flex gap-2  items-center uppercase tracking-wider mt-10 p-3 text-tertiary">
+          <h2 className="md:text-3xl flex gap-2  items-center uppercase dark:text-secondary  tracking-wider mt-10 p-3 text-tertiary_light">
             More
-            <span className="bg-tertiary/90 rounded-md p-2 text-secondary">
+            <span className="bg-tertiary_light/90 dark:bg-tertiary_dark/90 rounded-md p-2 text-secondary">
               {strGlass}
             </span>
             {""}
@@ -748,9 +880,9 @@ function DetailItem({ meal, cocktail }: Props) {
         </section>
 
         <section>
-          <h2 className="md:text-3xl flex gap-2  items-center uppercase tracking-wider mt-10 p-3 text-tertiary">
+          <h2 className="md:text-3xl flex gap-2 dark:text-secondary items-center uppercase tracking-wider mt-10 p-3 text-tertiary_light">
             More
-            <span className="bg-tertiary/90 rounded-md p-2 text-secondary">
+            <span className="bg-tertiary_light/90 dark:bg-tertiary_dark/90 rounded-md p-2 text-secondary">
               {strAlcoholic}
             </span>
             {""}

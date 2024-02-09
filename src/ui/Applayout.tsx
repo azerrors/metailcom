@@ -42,11 +42,14 @@ function Applayout() {
   }, [showResponsiveNav]);
 
   return (
-    <div className="bg-primary">
+    <div className="bg-secondary dark:bg-primary_dark">
       <Navbar />
-      <div className="flex  overflow-x-hidden justify-center" style={{ scrollbarWidth: "thin" }}>
+      <div
+        className="flex  overflow-x-hidden justify-center"
+        style={{ scrollbarWidth: "thin" }}
+      >
         {mainInput && showSearchBar && (
-          <Modal classing="md:w-96 md:scrollbar rounded-md absolute  top-20 max-h-[40rem] md:overflow-y-auto overflow-x-hidden bg-white shadow-md md:ml-3 z-50">
+          <Modal classing="md:w-96 md:scrollbar rounded-md absolute  top-20 max-h-[40rem] md:overflow-y-auto overflow-x-hidden dark:bg-primary_dark bg-white md:shadow-md md:mr-14 z-50">
             {loading && (
               <div className="flex justify-center h-56 w-full items-center">
                 <Spinner />
@@ -78,10 +81,10 @@ function Applayout() {
                         />
                       </div>
                       <div className="flex flex-col justify-between">
-                        <h3 className="text-md truncate w-64">
+                        <h3 className="text-md dark:text-secondary truncate w-64">
                           {meal.strMeal}
                         </h3>
-                        <h4 className="text-sm text-stone-800/60 group-hover:text-stone-800">
+                        <h4 className="text-sm text-stone-800/60 dark:text-stone-500 dark:group-hover:text-stone-300 group-hover:text-stone-800">
                           {meal.strCategory}/{meal.strArea}
                         </h4>
                       </div>
@@ -107,10 +110,10 @@ function Applayout() {
                         />
                       </div>
                       <div className="flex flex-col justify-between">
-                        <h3 className="text-md truncate w-64">
+                        <h3 className="text-md dark:text-secondary truncate w-64">
                           {cocktail.strDrink}
                         </h3>
-                        <h4 className="text-sm text-stone-800/60 group-hover:text-stone-800">
+                        <h4 className="text-sm text-stone-800/60 dark:text-stone-500 dark:group-hover:text-stone-300 group-hover:text-stone-800">
                           {cocktail.strCategory}/{cocktail.strAlcoholic}
                         </h4>
                       </div>

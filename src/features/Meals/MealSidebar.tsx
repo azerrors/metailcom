@@ -1,6 +1,4 @@
-import {
-  BsArrowRightShort
-} from "react-icons/bs";
+import { BsArrowRightShort } from "react-icons/bs";
 import { MdOutlineCloseFullscreen } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { useMainContext } from "../../context/main-context";
@@ -14,7 +12,10 @@ type MealSidebarProps = {
 function MealSidebar({ area, category, ingredient }: MealSidebarProps) {
   const { dispatch } = useMainContext();
   return (
-    <div className="absolute top-0 bg-secondary  overflow-y-hidden w-full z-50">
+    <div
+      className="absolute top-0 bg-secondary dark:bg-tertiary_dark 
+    dark:text-secondary overflow-y-hidden w-full z-50"
+    >
       <section
         className="flex justify-end p-1"
         onClick={() => dispatch({ type: "ACTION_CLOSE_MEAL_SIDEBAR" })}

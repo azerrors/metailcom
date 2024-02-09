@@ -57,7 +57,7 @@ function PopularDrink({ cocktail }: PopularDrinkProps) {
   };
 
   return (
-    <div className="border-stone-200 border shadow-lg relative transition-all duration-300 hover:-translate-y-3 active:translate-y-1 hover:scale-[1.01] ">
+    <div className="border-stone-200 dark:text-secondary border shadow-lg relative transition-all duration-300 hover:-translate-y-3 active:translate-y-1 hover:scale-[1.01] ">
       <Link to={`/${idDrink}?idDrink=${idDrink}`}>
         <div>
           <img

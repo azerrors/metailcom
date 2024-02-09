@@ -15,7 +15,10 @@ function ResponsiveNav() {
     document.body.style.overflowY = showResponsiveNav ? "hidden" : "";
   }, [showResponsiveNav]);
   return (
-    <div className="absolute bg-tertiary overflow-y-hidden w-full h-screen top-0 z-50">
+    <div
+      className="absolute dark:bg-tertiary_dark 
+    dark:text-secondary bg-tertiary_light overflow-y-hidden w-full h-screen top-0 z-50"
+    >
       <section className="flex justify-end p-1">
         <FaDownLeftAndUpRightToCenter
           className="text-secondary text-2xl"
@@ -60,7 +63,6 @@ function ResponsiveNav() {
         <Button btn="primary">Login</Button>
         <Button btn="secondary">Register</Button>
       </section>
-
     </div>
   );
 }
