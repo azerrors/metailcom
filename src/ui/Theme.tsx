@@ -24,14 +24,14 @@ function Theme() {
       {theme !== "dark" ? (
         <>
           <IoMoonOutline
-            className="mr-8 cursor-pointer text-xl text-secondary md:text-2xl"
+            className="md:mr-8 cursor-pointer text-2xl text-secondary md:text-2xl"
             onClick={handleSetTheme}
           />
         </>
       ) : (
         <>
           <HiOutlineSun
-            className="mr-8 cursor-pointer text-xl text-secondary md:text-2xl"
+            className="md:mr-8 cursor-pointer text-3xl text-secondary md:text-2xl"
             onClick={handleSetTheme}
           />
         </>

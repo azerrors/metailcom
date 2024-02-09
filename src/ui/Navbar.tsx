@@ -45,7 +45,7 @@ function Navbar() {
             className="text-2xl  text-secondary "
             onClick={() => dispatch({ type: "ACTION_OPEN_RESPONSIVE_NAV" })}
           />
-          <div >
+          <div>
             <Input
               type="text"
               placeholder="search foods and cocktails"
@@ -66,6 +66,7 @@ function Navbar() {
             <Link to="favorites">
               <BsHeart className="text-secondary mt-1 text-2xl " />
             </Link>
+            <Theme />
           </div>
         </div>
 

@@ -11,7 +11,7 @@ type StylesProps = {
 };
 
 const styles: StylesProps = {
-  nav: "md:w-96 w-56 p-1 focus:outline-none rounded-md",
+  nav: "md:w-96 w-48 p-1 focus:outline-none rounded-md",
   primary: "w-60 p-1 focus:outline-none rounded-md",
 };
 
