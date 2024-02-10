@@ -9,9 +9,8 @@ function Cart() {
     0
   );
 
-  console.log(currNum);
   return (
-    <div className="md:mx-72 mt-10">
+    <div className="md:mx-72 mt-10 h-screen">
       <h3 className="md:text-3xl dark:text-secondary flex justify-between tracking-wider font-medium text-stone-900 border-b-2 p-2 border-tertiary_light dark:border-tertiary_dark rounded-md">
         Your Shopping Basket
       </h3>

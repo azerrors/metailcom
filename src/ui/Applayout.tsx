@@ -16,6 +16,7 @@ import { getSearchedCocktails } from "../services/cocktailApi/cocktailMain";
 import { getSearchedMeals } from "../services/mealApi/mealMain";
 import ResponsiveNav from "./ResponsiveNav";
 import { useEffect } from "react";
+import Footer from "./Footer";
 
 function Applayout() {
   const { mainInput, showResponsiveNav, dispatch, showSearchBar } =
@@ -129,6 +130,7 @@ function Applayout() {
       <main className="md:min-h-[45rem] min-h-[30.75rem] ">
         <Outlet />
       </main>
+      <Footer />
     </div>
   );
 }
