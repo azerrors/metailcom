@@ -30,7 +30,7 @@ const styles: StylesType = {
     "bg-secondary dark:text-primary_light px-3 py-2 tracking-wider rounded-md uppercase font-medium text-tertiary",
 
   nav_primary:
-    "text-md uppercase  text-secondary font-semibold hover:bg-stone-100/50 p-1   rounded-md transition-all duration-200",
+    "md:text-lg text-xs uppercase  text-secondary font-semibold hover:bg-stone-100/50 p-1   rounded-md transition-all duration-200",
   nav_secondary: "text-sm uppercase text-secondary ",
   nav_tertiary:
     "p-2 text-secondary rounded-lg tracking-wider text-lg border-x-2 border-secondary font-semibold uppercase  ",
