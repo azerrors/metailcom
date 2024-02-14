@@ -8,6 +8,7 @@ import AllCategoryList from "../features/Home/AllCategoryList";
 import PopularDrinksList from "../features/Home/PopularDrinksList";
 import List from "../ui/List";
 import Button from "../ui/reusable/Button";
+import { Link } from "react-router-dom";
 
 function Home() {
   const { data: trending, isLoading: trendLoading } = useQuery({
@@ -37,8 +38,8 @@ function Home() {
         <h2 className="absolute flex flex-col gap-2 top-36 md:top-48  left-5 md:left-10 tracking-widest text-secondary text-2xl md:text-4xl">
           Explore More <span>Interesting Foods</span>
         </h2>
-        <div className="absolute md:top-80 top-64 left-5">
-          <Button btn="primary">Explore</Button>
+        <div className="absolute md:top-80 top-64 md:left-9 left-5">
+          <Button to="meals" btn="primary">Explore</Button>
         </div>
       </section>
 
@@ -68,7 +69,9 @@ function Home() {
           />
         </div>
         <div className="px-8 md:pt-16 pt-5 md:w-[40%]">
-          <p className="uppercase md:text-medium text-sm font-semibold text-stone-800/50 dark:text-stone-400 ">Seafood</p>
+          <p className="uppercase md:text-medium text-sm font-semibold text-stone-800/50 dark:text-stone-400 ">
+            Seafood
+          </p>
           <h2 className="md:text-xl dark:text-secondary uppercase font-semibold tracking-wider ">
             Baked salmon with fennel & tomatoes
           </h2>

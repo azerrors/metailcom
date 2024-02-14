@@ -1,22 +1,30 @@
 import { MealTypes } from "../../ui/List";
 import { CocktailType } from "../Home/PopularDrinksList";
 
-import DetailItem from "./DetailItem";
+import DrinkDetailItem from "./drink/DrinkDetailItem";
+import MealDetailItem from "./meal/MealDetailItem";
 
 type DetailListProps = {
   meal?: MealTypes[];
   cocktail?: CocktailType[];
+  mealLoading?: string;
 };
 
-function DetailList({ meal, cocktail }: DetailListProps) {
+function DetailList({ meal, mealLoading, cocktail }: DetailListProps) {
   if (meal) {
     return meal?.map((meal) => {
-      return <DetailItem meal={meal} key={meal.idMeal} />;
+      return (
+        <MealDetailItem
+          meal={meal}
+          mealLoading={mealLoading}
+          key={meal.idMeal}
+        />
+      );
     });
   }
   if (cocktail) {
     return cocktail?.map((cocktails) => {
-      return <DetailItem cocktail={cocktails} key={cocktails.idDrink} />;
+      return <DrinkDetailItem drink={cocktails} key={cocktails.idDrink} />;
     });
   }
 }

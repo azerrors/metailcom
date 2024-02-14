@@ -24,7 +24,7 @@ function FilteredMealCategory() {
         <div className="flex flex-col  dark:text-secondary  md:flex-row items-center  gap-5">
           <h3 className="md:text-xl md:w-72 w-56 truncate text-sm border-b-2">
             Meals filtered by{" "}
-            <span className="p-1 bg-tertiary rounded-md text-secondary font-medium">
+            <span className="p-1 bg-tertiary rounded-md  dark:text-secondary font-medium">
               {mealCategory}
             </span>
           </h3>

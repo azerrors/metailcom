@@ -10,6 +10,7 @@ import { MealTypes } from "../../ui/List";
 import Spinner from "../../ui/Spinner";
 import Input from "../../ui/reusable/Input";
 import MealItem from "./MealItem";
+import { CgSmileSad } from "react-icons/cg";
 
 function FilteredMealSearch() {
   const { mealInput, dispatch } = useMainContext();
@@ -21,12 +22,12 @@ function FilteredMealSearch() {
   return (
     <div>
       <div className="flex items-center justify-center gap-5  md:justify-end md:mx-24">
-      <div className="md:hidden ">
+        <div className="md:hidden ">
           <FaList
             className="text-tertiary_light dark:text-secondary text-xl"
             onClick={() => dispatch({ type: "ACTION_OPEN_MEAL_SIDEBAR" })}
           />
-      </div>
+        </div>
         <Input
           inp="primary"
           placeholder="search meal"
@@ -50,7 +51,11 @@ function FilteredMealSearch() {
           })}
         </ul>
       )}
-      {!meal?.length && <>NOT FOUND </>}
+      {!meal?.length && (
+        <div className="flex uppercase justify-center mt-32 items-center text-2xl text-tertiary_light gap-4">
+          No results found <CgSmileSad className="" />{" "}
+        </div>
+      )}
     </div>
   );
 }

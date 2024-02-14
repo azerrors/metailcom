@@ -52,7 +52,7 @@ function Applayout() {
         {mainInput && showSearchBar && (
           <Modal classing="md:w-96 md:scrollbar rounded-md absolute  top-20 max-h-[40rem] md:overflow-y-auto overflow-x-hidden dark:bg-primary_dark bg-white md:shadow-md md:mr-14 z-50">
             {loading && (
-              <div className="flex justify-center h-56 w-full items-center">
+              <div className="flex justify-center h-56 w-screen  items-center">
                 <Spinner />
               </div>
             )}

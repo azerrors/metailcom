@@ -22,9 +22,9 @@ function FilteredDrinkAlcohol() {
           onClick={() => dispatch({ type: "ACTION_OPEN_COCKTAIL_SIDEBAR" })}
         />
         <div className="flex flex-col dark:text-secondary md:flex-row items-center  gap-5">
-          <h3 className="md:text-xl text-sm w-56 truncate border-b-2">
+          <h3 className="md:text-xl text-sm md:w-80 w-56 truncate border-b-2">
             Drinks filtered by{" "}
-            <span className="p-1 bg-tertiary rounded-md text-secondary font-medium">
+            <span className="p-1 bg-tertiary rounded-md dark:text-secondary font-medium">
               {drinkAlcohol}
             </span>
           </h3>

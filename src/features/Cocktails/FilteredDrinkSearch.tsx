@@ -1,11 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import { useMainContext } from "../../context/main-context";
+import { CgSmileSad } from "react-icons/cg";
+import { FaList } from "react-icons/fa6";
+
 import { getSearchedCocktails } from "../../services/cocktailApi/cocktailMain";
+
 import Spinner from "../../ui/Spinner";
 import Input from "../../ui/reusable/Input";
 import { CocktailType } from "../Home/PopularDrinksList";
 import CocktailItem from "./CocktailItem";
-import { FaList } from "react-icons/fa6";
 
 function FilteredDrinkSearch() {
   const { drinkInput, dispatch } = useMainContext();
@@ -46,7 +49,11 @@ function FilteredDrinkSearch() {
           })}
         </ul>
       )}
-      {!cocktail?.length && <>NOT FOUND </>}
+      {!cocktail?.length && (
+        <div className="flex uppercase justify-center mt-32 items-center text-2xl text-tertiary_light gap-4">
+          No results found <CgSmileSad  className=""/>{" "}
+        </div>
+      )}
     </div>
   );
 }

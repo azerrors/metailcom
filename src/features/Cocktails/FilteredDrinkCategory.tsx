@@ -23,9 +23,9 @@ function FilteredDrinkCategory() {
           onClick={() => dispatch({ type: "ACTION_OPEN_COCKTAIL_SIDEBAR" })}
         />
         <div className="flex flex-col md:flex-row dark:text-secondary items-center  gap-5">
-          <h3 className="md:text-xl w-56 truncate text-sm border-b-2">
+          <h3 className="md:text-xl md:w-80 w-56 truncate text-sm border-b-2">
             Drinks filtered by{" "}
-            <span className="p-1 bg-tertiary rounded-md text-secondary font-medium">
+            <span className="p-1 bg-tertiary rounded-md dark:text-secondary font-medium">
               {drinkCategory}
             </span>
           </h3>

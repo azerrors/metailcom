@@ -63,10 +63,10 @@ function CocktailItem({ cocktail }: CocktailItemProps) {
           <img src={strDrinkThumb} alt="" className="rounded-md w-36 md:w-56" />
           <div className="absolute top-0 h-full w-full  bg-gradient-to-t from-black via-transparent to-transparent"></div>
         </div>
-        <h2 className="md:text-2xl text-md absolute text-secondary bottom-2 left-2 font-medium">
+        <h2 className="md:text-xl w-28 md:w-48 truncate text-md absolute text-secondary bottom-2 left-2 font-medium">
           {strDrink}
         </h2>
-        <h4 className="absolute bottom-7 md:bottom-9 left-2 md:text-lg text-sm text-secondary/50">
+        <h4 className="absolute text-secondary/50 bottom-7  md:bottom-8 left-2 text-sm md:text-md">
           {strCategory}
         </h4>
       </Link>

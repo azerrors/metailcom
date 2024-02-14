@@ -24,7 +24,7 @@ function FilteredMealArea() {
         <div className="flex flex-col md:flex-row dark:text-secondary items-center  gap-5">
           <h3 className="md:text-xl w-56 md:w-72 md:screen truncate text-sm border-b-2">
             Meals filtered by{" "}
-            <span className="p-1 bg-tertiary rounded-md text-secondary font-medium">
+            <span className="p-1 bg-tertiary rounded-md dark:text-secondary font-medium">
               {mealArea}
             </span>
           </h3>
