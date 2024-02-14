@@ -13,10 +13,9 @@ import SimilarMealItem from "./SimilarMealItem";
 
 type Props = {
   meal: MealTypes;
-  mealLoading?: string;
 };
 
-function MealDetailItem({ meal, mealLoading }: Props) {
+function MealDetailItem({ meal }: Props) {
   const { cart, dispatch, favorites } = useMainContext();
 
   const {

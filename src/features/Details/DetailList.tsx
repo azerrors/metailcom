@@ -7,16 +7,14 @@ import MealDetailItem from "./meal/MealDetailItem";
 type DetailListProps = {
   meal?: MealTypes[];
   cocktail?: CocktailType[];
-  mealLoading?: string;
 };
 
-function DetailList({ meal, mealLoading, cocktail }: DetailListProps) {
+function DetailList({ meal,  cocktail }: DetailListProps) {
   if (meal) {
     return meal?.map((meal) => {
       return (
         <MealDetailItem
           meal={meal}
-          mealLoading={mealLoading}
           key={meal.idMeal}
         />
       );
